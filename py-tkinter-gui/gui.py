@@ -61,8 +61,8 @@ class Theme:
 
         style.configure('TEntry', fieldbackground=self.color.background, foreground=self.color.foreground, font=self.font.font_b)
 
-        # style.configure('TCheckbutton', background=self.color.background, foreground=self.color.foreground, font=self.font.font_b)
-        # style.map('TCheckbutton', background=[('active', self.color.background_alt)], foreground=[('selected', self.color.foreground)])
+        # style.configure('Custom.TCheckbutton', background=self.color.background, justify='center', foreground=self.color.foreground, font=self.font.font_b)
+        # style.map('Custom.TCheckbutton', background=[('active', self.color.background_alt)], foreground=[('selected', self.color.foreground)])
 
 class Color:
     primary = "#0d6efd"
@@ -264,126 +264,15 @@ lf_checkbutton = ttk.LabelFrame(tab0, text="CHECKBUTTONS", style='Custom.TLabelf
 lf_checkbutton.grid(row=5, column=0, sticky="news")
 lf_checkbutton.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-# Configure the style for the TCheckbutton to mimic tk.Checkbutton
-style.configure('Custom.TCheckbutton',
-                activebackground= 'SystemButtonFace',
-activeforeground= 'SystemWindowText',
-anchor= 'center',
-background= '#343a40',
-bd= 2,
-bg= '#343a40',
-bitmap='',
-border= 2,
-borderwidth= 2,
-command='',
-compound= 'none',
-cursor='',
-disabledforeground= 'SystemDisabledText',
-fg= '#f8f9fa',
-font= 'Consolas 12 bold',
-foreground= '#f8f9fa',
-height= 0,
-highlightbackground= 'SystemButtonFace',
-highlightcolor= 'SystemWindowFrame',
-highlightthickness= 1,
-image='',
-indicatoron= 1,
-justify= 'center',
-offrelief= 'raised',
-offvalue= 0,
-onvalue= 1,
-overrelief='',
-padx= 1,
-pady= 1,
-relief= 'flat',
-selectcolor='#343a40',
-selectimage='',
-state= 'normal',
-takefocus='',
-# text= test,
-textvariable='',
-tristateimage='',
-tristatevalue='',
-underline= -1,
-# variable= !checkbutton-1,
-width= 0,
-wraplength= 0)
+style.configure('Custom.TCheckbutton', background=Color.dark, anchor='center', foreground=Color.light, font=Font.font_b)
+style.map('Custom.TCheckbutton', background=[('active', Color.dark_active)], foreground=[('selected', Color.light)])
 
+ttk.Checkbutton(lf_checkbutton, text="test", style="Custom.TCheckbutton").grid(row=1, column=0, sticky="news")
+tk.Checkbutton(lf_checkbutton, text="test", bg=Color.dark, fg=Color.light, selectcolor=Color.dark, font=Font.font_b).grid(row=1, column=1, sticky="news")
 
-# style.configure('Custom.TCheckbutton.TButton',
-#                 background=Color.dark,              # Background color for the button
-#                 foreground=Color.light,             # Foreground (text) color
-#                 font=Font.font_b)                    # Position of the indicator relative to the text
+# print(tk.LabelFrame.Label)
 
-cbtn = ttk.Checkbutton(lf_checkbutton, text="test", style="Custom.TCheckbutton")
-cbtn.grid(row=1, column=0, sticky="news")
+tk.Radiobutton(lf_checkbutton, text="test", bg=Color.dark, fg=Color.light, selectcolor=Color.dark, font=Font.font_b).grid(row=2, column=0, sticky="news")
 
-cbtn1 = tk.Checkbutton(lf_checkbutton, text="test", bg=Color.dark, fg=Color.light, selectcolor=Color.dark, font=Font.font_b)
-cbtn1.grid(row=1, column=1, sticky="news")
-
-print("Checkbutton Attributes:")
-attributes = [
-    'text', 'bg', 'fg', 'selectcolor', 'font', 'anchor', 'bd', 'bitmap',
-    'borderwidth', 'command', 'compound', 'cursor', 'disabledforeground',
-    'highlightbackground', 'highlightcolor', 'highlightthickness', 'image',
-    'indicatoron', 'justify', 'offrelief', 'offvalue', 'onvalue', 'overrelief',
-    'padx', 'pady', 'relief', 'state', 'takefocus', 'textvariable', 'tristateimage',
-    'tristatevalue', 'underline', 'variable', 'width', 'wraplength'
-]
-params = [
-    # "master",
-    # "cnf",
-    "activebackground",
-    "activeforeground",
-    "anchor",
-    "background",
-    "bd",
-    "bg",
-    "bitmap",
-    "border",
-    "borderwidth",
-    "command",
-    "compound",
-    "cursor",
-    "disabledforeground",
-    "fg",
-    "font",
-    "foreground",
-    "height",
-    "highlightbackground",
-    "highlightcolor",
-    "highlightthickness",
-    "image",
-    "indicatoron",
-    "justify",
-    # "name",
-    "offrelief",
-    "offvalue",
-    "onvalue",
-    "overrelief",
-    "padx",
-    "pady",
-    "relief",
-    "selectcolor",
-    "selectimage",
-    "state",
-    "takefocus",
-    "text",
-    "textvariable",
-    "tristateimage",
-    "tristatevalue",
-    "underline",
-    "variable",
-    "width",
-    "wraplength"
-]
-
-
-for attr in attributes:
-    print(f"{attr}: {cbtn1.cget(attr)}")
-print ("===================")
-for attr in params:
-    print(f"{attr}: {cbtn1.cget(attr)}")
-
-
+#[MAIN-LOOP]####################################################################
 root.mainloop()
