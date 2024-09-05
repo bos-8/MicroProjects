@@ -139,6 +139,7 @@ for style_name, colors in all_styles.items():
               background=[('active', colors[2]), ('disabled', colors[3]), ('hover', colors[1])],
               foreground=[('disabled', Color.gray)])
     style.configure(f'{style_name}.TLabel', background=colors[0], foreground=colors[4], font=Font.font_b)
+    style.configure(f'{style_name}.TFrame', background=colors[0])
 
 #[ROOT]#########################################################################
 #-------------------------------------------------------------------------------
@@ -202,5 +203,37 @@ ttk.Button(lf_btn, text="DISABLED", style='danger.TButton', state="disabled").gr
 ttk.Button(lf_btn, text="DISABLED", style='light.TButton', state="disabled").grid(row=1, column=7, sticky="news")
 ttk.Button(lf_btn, text="DISABLED", style='dark.TButton', state="disabled").grid(row=1, column=8, sticky="news")
 
+# FRAME
+lf_frame = ttk.LabelFrame(tab0, text="FRAMES", style='Custom.TLabelframe')
+lf_frame.grid(row=2, column=0, sticky="news")
+lf_frame.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+standard_f = ttk.Frame(lf_frame, style='TFrame')
+standard_f.grid(row=0, column=0, sticky="news")
+ttk.Label(standard_f, text="STANDARD", style='TLabel').pack(pady=5)
+primary_f = ttk.Frame(lf_frame, style='primary.TFrame')
+primary_f.grid(row=0, column=1, sticky="news")
+ttk.Label(primary_f, text="PRIMARY", style='primary.TLabel').pack(pady=5)
+secondary_f = ttk.Frame(lf_frame, style='secondary.TFrame')
+secondary_f.grid(row=0, column=2, sticky="news")
+ttk.Label(secondary_f, text="SECONDARY", style='secondary.TLabel').pack(pady=5)
+success_f = ttk.Frame(lf_frame, style='success.TFrame')
+success_f.grid(row=0, column=3, sticky="news")
+ttk.Label(success_f, text="SUCCESS", style='success.TLabel').pack(pady=5)
+info_f = ttk.Frame(lf_frame, style='info.TFrame')
+info_f.grid(row=0, column=4, sticky="news")
+ttk.Label(info_f, text="INFO", style='info.TLabel').pack(pady=5)
+warning_f = ttk.Frame(lf_frame, style='warning.TFrame')
+warning_f.grid(row=0, column=5, sticky="news")
+ttk.Label(warning_f, text="WARNING", style='warning.TLabel').pack(pady=5)
+danger_f = ttk.Frame(lf_frame, style='danger.TFrame')
+danger_f.grid(row=0, column=6, sticky="news")
+ttk.Label(danger_f, text="DANGER", style='danger.TLabel').pack(pady=5)
+light_f = ttk.Frame(lf_frame, style='light.TFrame')
+light_f.grid(row=0, column=7, sticky="news")
+ttk.Label(light_f, text="LIGHT", style='light.TLabel').pack(pady=5)
+dark_f = ttk.Frame(lf_frame, style='dark.TFrame')
+dark_f.grid(row=0, column=8, sticky="news")
+ttk.Label(dark_f, text="DARK", style='dark.TLabel').pack(pady=5)
 
 root.mainloop()
