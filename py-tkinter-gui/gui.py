@@ -43,7 +43,7 @@ class Theme:
 
         style.configure('TButton', background=self.color.background, foreground=self.color.foreground, font=self.font.font_b, padding=[5, 5])
         style.map('TButton', background=[('active', self.color.background_alt), ('disabled', self.color.gray), ('hover', self.color.background)],
-              foreground=[('disabled', self.color.gray)])
+              foreground=[('disabled', self.color.foreground_alt)])
 
         style.configure("Custom.TLabelframe",
                     font=Font.font_b,
@@ -56,6 +56,8 @@ class Theme:
                     font=Font.font_b,
                     foreground=self.color.foreground,
                     background=self.color.background)
+
+        style.configure('TLabel', background=self.color.background, foreground=self.color.foreground, font=self.font.font_b)
 class Color:
     primary = "#0d6efd"
     primary_hover = "#0b5ed7"
@@ -136,6 +138,7 @@ for style_name, colors in all_styles.items():
     style.map(f'{style_name}.TButton',
               background=[('active', colors[2]), ('disabled', colors[3]), ('hover', colors[1])],
               foreground=[('disabled', Color.gray)])
+    style.configure(f'{style_name}.TLabel', background=colors[0], foreground=colors[4], font=Font.font_b)
 
 #[ROOT]#########################################################################
 #-------------------------------------------------------------------------------
@@ -159,29 +162,45 @@ ttk.Button(root, text="THEME", style='TButton', command=toggle_theme).place(relx
 #[TAB0]#########################################################################
 tab0.columnconfigure(0, weight=1)
 
-# style.configure("Custom.TLabelframe",
-#                     font=Font.font_b,
-#                     foreground="blue",
-#                     background=Color.black,
+# LABEL
+lf_label = ttk.LabelFrame(tab0, text="LABELS", style='Custom.TLabelframe')
+lf_label.grid(row=0, column=0, sticky="news")
+lf_label.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-#                     borderwidth=1,
-#                     relief="groove")
+ttk.Label(lf_label, text="STANDARD", style='TLabel').grid(row=0, column=0, sticky="news", pady=5)
+ttk.Label(lf_label, text="PRIMARY", style='primary.TLabel').grid(row=0, column=1, sticky="news", pady=5)
+ttk.Label(lf_label, text="SECONDARY", style='secondary.TLabel').grid(row=0, column=2, sticky="news", pady=5)
+ttk.Label(lf_label, text="SUCCESS", style='success.TLabel').grid(row=0, column=3, sticky="news", pady=5)
+ttk.Label(lf_label, text="INFO", style='info.TLabel').grid(row=0, column=4, sticky="news", pady=5)
+ttk.Label(lf_label, text="WARNING", style='warning.TLabel').grid(row=0, column=5, sticky="news", pady=5)
+ttk.Label(lf_label, text="DANGER", style='danger.TLabel').grid(row=0, column=6, sticky="news", pady=5)
+ttk.Label(lf_label, text="LIGHT", style='light.TLabel').grid(row=0, column=7, sticky="news", pady=5)
+ttk.Label(lf_label, text="DARK", style='dark.TLabel').grid(row=0, column=8, sticky="news", pady=5)
 
-# lf_btn = ttk.LabelFrame(tab0, text="BUTTONS", style='Custom.TLabelFrame.Label')
+# BTN
 lf_btn = ttk.LabelFrame(tab0, text="BUTTONS", style='Custom.TLabelframe')
+lf_btn.grid(row=1, column=0, sticky="news")
+lf_btn.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-# lf_btn = tk.LabelFrame(tab0, text="BUTTONS", bg=Color.black, fg=Color.white, font=Font.font_b, relief="groove", borderwidth=1 )
-lf_btn.grid(row=0, column=0, sticky="news")
-lf_btn.columnconfigure((0,1,2,3,4,5,6,7), weight=1)
+ttk.Button(lf_btn, text="STANDARD", style='TButton').grid(row=0, column=0, sticky="news")
+ttk.Button(lf_btn, text="PRIMARY", style='primary.TButton').grid(row=0, column=1, sticky="news")
+ttk.Button(lf_btn, text="SECONDARY", style='secondary.TButton').grid(row=0, column=2, sticky="news")
+ttk.Button(lf_btn, text="SUCCESS", style='success.TButton').grid(row=0, column=3, sticky="news")
+ttk.Button(lf_btn, text="INFO", style='info.TButton').grid(row=0, column=4, sticky="news")
+ttk.Button(lf_btn, text="WARNING", style='warning.TButton').grid(row=0, column=5, sticky="news")
+ttk.Button(lf_btn, text="DANGER", style='danger.TButton').grid(row=0, column=6, sticky="news")
+ttk.Button(lf_btn, text="LIGHT", style='light.TButton').grid(row=0, column=7, sticky="news")
+ttk.Button(lf_btn, text="DARK", style='dark.TButton').grid(row=0, column=8, sticky="news")
 
-ttk.Button(lf_btn, text="PRIMARY", style='primary.TButton').grid(row=1, column=0, sticky="news", pady=10)
-ttk.Button(lf_btn, text="SECONDARY", style='secondary.TButton').grid(row=1, column=1, sticky="news", pady=10)
-ttk.Button(lf_btn, text="SUCCESS", style='success.TButton').grid(row=1, column=2, sticky="news", pady=10)
-ttk.Button(lf_btn, text="INFO", style='info.TButton').grid(row=1, column=3, sticky="news", pady=10)
-ttk.Button(lf_btn, text="WARNING", style='warning.TButton').grid(row=1, column=4, sticky="news", pady=10)
-ttk.Button(lf_btn, text="DANGER", style='danger.TButton').grid(row=1, column=5, sticky="news", pady=10)
-ttk.Button(lf_btn, text="LIGHT", style='light.TButton').grid(row=1, column=6, sticky="news", pady=10)
-ttk.Button(lf_btn, text="DARK", style='dark.TButton').grid(row=1, column=7, sticky="news", pady=10)
+ttk.Button(lf_btn, text="DISABLED", style='TButton', state="disabled").grid(row=1, column=0, sticky="news")
+ttk.Button(lf_btn, text="DISABLED", style='primary.TButton', state="disabled").grid(row=1, column=1, sticky="news")
+ttk.Button(lf_btn, text="DISABLED", style='secondary.TButton', state="disabled").grid(row=1, column=2, sticky="news")
+ttk.Button(lf_btn, text="DISABLED", style='success.TButton', state="disabled").grid(row=1, column=3, sticky="news")
+ttk.Button(lf_btn, text="DISABLED", style='info.TButton', state="disabled").grid(row=1, column=4, sticky="news")
+ttk.Button(lf_btn, text="DISABLED", style='warning.TButton', state="disabled").grid(row=1, column=5, sticky="news")
+ttk.Button(lf_btn, text="DISABLED", style='danger.TButton', state="disabled").grid(row=1, column=6, sticky="news")
+ttk.Button(lf_btn, text="DISABLED", style='light.TButton', state="disabled").grid(row=1, column=7, sticky="news")
+ttk.Button(lf_btn, text="DISABLED", style='dark.TButton', state="disabled").grid(row=1, column=8, sticky="news")
 
 
 root.mainloop()
