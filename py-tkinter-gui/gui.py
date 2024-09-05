@@ -58,6 +58,12 @@ class Theme:
                     background=self.color.background)
 
         style.configure('TLabel', background=self.color.background, foreground=self.color.foreground, font=self.font.font_b)
+
+        style.configure('TEntry', fieldbackground=self.color.background, foreground=self.color.foreground, font=self.font.font_b)
+
+        # style.configure('TCheckbutton', background=self.color.background, foreground=self.color.foreground, font=self.font.font_b)
+        # style.map('TCheckbutton', background=[('active', self.color.background_alt)], foreground=[('selected', self.color.foreground)])
+
 class Color:
     primary = "#0d6efd"
     primary_hover = "#0b5ed7"
@@ -140,6 +146,7 @@ for style_name, colors in all_styles.items():
               foreground=[('disabled', Color.gray)])
     style.configure(f'{style_name}.TLabel', background=colors[0], foreground=colors[4], font=Font.font_b)
     style.configure(f'{style_name}.TFrame', background=colors[0])
+    style.configure(f'{style_name}.TEntry', fieldbackground=colors[0], foreground=colors[4], font=Font.font_b)
 
 #[ROOT]#########################################################################
 #-------------------------------------------------------------------------------
@@ -235,5 +242,148 @@ ttk.Label(light_f, text="LIGHT", style='light.TLabel').pack(pady=5)
 dark_f = ttk.Frame(lf_frame, style='dark.TFrame')
 dark_f.grid(row=0, column=8, sticky="news")
 ttk.Label(dark_f, text="DARK", style='dark.TLabel').pack(pady=5)
+
+# ENTRY
+lf_entry = ttk.LabelFrame(tab0, text="ENTRIES", style='Custom.TLabelframe')
+lf_entry.grid(row=3, column=0, sticky="news")
+lf_entry.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+ttk.Entry(lf_entry, style='TEntry').grid(row=0, column=0, sticky="news")
+ttk.Entry(lf_entry, style='primary.TEntry').grid(row=0, column=1, sticky="news")
+ttk.Entry(lf_entry, style='secondary.TEntry').grid(row=0, column=2, sticky="news")
+ttk.Entry(lf_entry, style='success.TEntry').grid(row=0, column=3, sticky="news")
+ttk.Entry(lf_entry, style='info.TEntry').grid(row=0, column=4, sticky="news")
+ttk.Entry(lf_entry, style='warning.TEntry').grid(row=0, column=5, sticky="news")
+ttk.Entry(lf_entry, style='danger.TEntry').grid(row=0, column=6, sticky="news")
+ttk.Entry(lf_entry, style='light.TEntry').grid(row=0, column=7, sticky="news")
+ttk.Entry(lf_entry, style='dark.TEntry').grid(row=0, column=8, sticky="news")
+
+
+# CHECKBUTTON
+lf_checkbutton = ttk.LabelFrame(tab0, text="CHECKBUTTONS", style='Custom.TLabelframe')
+lf_checkbutton.grid(row=5, column=0, sticky="news")
+lf_checkbutton.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+# Configure the style for the TCheckbutton to mimic tk.Checkbutton
+style.configure('Custom.TCheckbutton',
+                activebackground= 'SystemButtonFace',
+activeforeground= 'SystemWindowText',
+anchor= 'center',
+background= '#343a40',
+bd= 2,
+bg= '#343a40',
+bitmap='',
+border= 2,
+borderwidth= 2,
+command='',
+compound= 'none',
+cursor='',
+disabledforeground= 'SystemDisabledText',
+fg= '#f8f9fa',
+font= 'Consolas 12 bold',
+foreground= '#f8f9fa',
+height= 0,
+highlightbackground= 'SystemButtonFace',
+highlightcolor= 'SystemWindowFrame',
+highlightthickness= 1,
+image='',
+indicatoron= 1,
+justify= 'center',
+offrelief= 'raised',
+offvalue= 0,
+onvalue= 1,
+overrelief='',
+padx= 1,
+pady= 1,
+relief= 'flat',
+selectcolor='#343a40',
+selectimage='',
+state= 'normal',
+takefocus='',
+# text= test,
+textvariable='',
+tristateimage='',
+tristatevalue='',
+underline= -1,
+# variable= !checkbutton-1,
+width= 0,
+wraplength= 0)
+
+
+# style.configure('Custom.TCheckbutton.TButton',
+#                 background=Color.dark,              # Background color for the button
+#                 foreground=Color.light,             # Foreground (text) color
+#                 font=Font.font_b)                    # Position of the indicator relative to the text
+
+cbtn = ttk.Checkbutton(lf_checkbutton, text="test", style="Custom.TCheckbutton")
+cbtn.grid(row=1, column=0, sticky="news")
+
+cbtn1 = tk.Checkbutton(lf_checkbutton, text="test", bg=Color.dark, fg=Color.light, selectcolor=Color.dark, font=Font.font_b)
+cbtn1.grid(row=1, column=1, sticky="news")
+
+print("Checkbutton Attributes:")
+attributes = [
+    'text', 'bg', 'fg', 'selectcolor', 'font', 'anchor', 'bd', 'bitmap',
+    'borderwidth', 'command', 'compound', 'cursor', 'disabledforeground',
+    'highlightbackground', 'highlightcolor', 'highlightthickness', 'image',
+    'indicatoron', 'justify', 'offrelief', 'offvalue', 'onvalue', 'overrelief',
+    'padx', 'pady', 'relief', 'state', 'takefocus', 'textvariable', 'tristateimage',
+    'tristatevalue', 'underline', 'variable', 'width', 'wraplength'
+]
+params = [
+    # "master",
+    # "cnf",
+    "activebackground",
+    "activeforeground",
+    "anchor",
+    "background",
+    "bd",
+    "bg",
+    "bitmap",
+    "border",
+    "borderwidth",
+    "command",
+    "compound",
+    "cursor",
+    "disabledforeground",
+    "fg",
+    "font",
+    "foreground",
+    "height",
+    "highlightbackground",
+    "highlightcolor",
+    "highlightthickness",
+    "image",
+    "indicatoron",
+    "justify",
+    # "name",
+    "offrelief",
+    "offvalue",
+    "onvalue",
+    "overrelief",
+    "padx",
+    "pady",
+    "relief",
+    "selectcolor",
+    "selectimage",
+    "state",
+    "takefocus",
+    "text",
+    "textvariable",
+    "tristateimage",
+    "tristatevalue",
+    "underline",
+    "variable",
+    "width",
+    "wraplength"
+]
+
+
+for attr in attributes:
+    print(f"{attr}: {cbtn1.cget(attr)}")
+print ("===================")
+for attr in params:
+    print(f"{attr}: {cbtn1.cget(attr)}")
+
 
 root.mainloop()
