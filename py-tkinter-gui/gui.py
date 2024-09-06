@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import *
 
 class Font:
     font_b = ('Consolas', 12, 'bold')
@@ -63,6 +64,23 @@ class Theme:
 
         # style.configure('Custom.TCheckbutton', background=self.color.background, justify='center', foreground=self.color.foreground, font=self.font.font_b)
         # style.map('Custom.TCheckbutton', background=[('active', self.color.background_alt)], foreground=[('selected', self.color.foreground)])
+
+        style.configure('TCombobox',
+                foreground=self.color.foreground,  # Text color
+                background=self.color.background,  # Background color
+                fieldbackground=self.color.background,  # Field background color
+                arrowcolor=self.color.foreground,
+                selectbackground=self.color.background_alt,
+                selectforeground=self.color.foreground_alt,
+                font=Font.font_b)  # Arrow color
+        style.map('TCombobox', fieldbackground=[('active', self.color.background), ('disabled', Color.dark_disabled)], arrowcolor=[('active', Color.light_active)])
+
+        root.option_add('*TCombobox*Listbox.background', self.color.background)  # Dark background
+        root.option_add('*TCombobox*Listbox.foreground', self.color.foreground)  # Light foreground
+        root.option_add('*TCombobox*Listbox.font', Font.font_b)  # Font for dropdown list
+        root.option_add('*TCombobox*Listbox.selectBackground', self.color.background_alt)  # Selected background
+        root.option_add('*TCombobox*Listbox.selectForeground', self.color.foreground_alt)  # Selected foreground
+
 
 class Color:
     primary = "#0d6efd"
@@ -272,7 +290,75 @@ tk.Checkbutton(lf_checkbutton, text="test", bg=Color.dark, fg=Color.light, selec
 
 # print(tk.LabelFrame.Label)
 
-tk.Radiobutton(lf_checkbutton, text="test", bg=Color.dark, fg=Color.light, selectcolor=Color.dark, font=Font.font_b).grid(row=2, column=0, sticky="news")
+# RADIOBUTTON
+lf_radiobutton = ttk.LabelFrame(tab0, text="RADIOBUTTONS", style='Custom.TLabelframe')
+lf_radiobutton.grid(row=6, column=0, sticky="news")
+lf_radiobutton.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+style.configure('TRadiobutton', background=Color.dark, foreground=Color.light, font=Font.font_b, selectcolor=Color.dark)
+# tk.option_add('*TRadiobutton*background', Color.dark)
+
+
+ttk.Radiobutton(lf_radiobutton, text="test", style="TCheckbutton").grid(row=2, column=0, sticky="news")
+tk.Radiobutton(lf_radiobutton, text="test", bg=Color.dark, fg=Color.light, selectcolor=Color.dark, font=Font.font_b).grid(row=2, column=1, sticky="news")
+
+# COMBOBOX
+lf_combobox = ttk.LabelFrame(tab0, text="COMBOBOXES", style='Custom.TLabelframe')
+lf_combobox.grid(row=7, column=0, sticky="news")
+lf_combobox.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+ttk.Combobox(lf_combobox, values=["OPT1", "OPT2", "OPT3"], style='TCombobox').grid(row=3, column=0, sticky="news")
+
+# MENUBTN
+lf_menu = ttk.LabelFrame(tab0, text="MENUBUTTON", style='Custom.TLabelframe')
+lf_menu.grid(row=8, column=0, sticky="news")
+lf_menu.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+root.option_add('*Menu.background', Color.dark)
+root.option_add('*Menu.foreground', Color.light)
+root.option_add('*Menu.font', Font.font_b)
+root.option_add('*Menu*activebackground*', Color.dark_active)
+# root.option_add('*Menu.activeforeground', Color.light)
+root.option_add('*Menu.selectColor', Color.light)
+root.option_add('*Menu.focusColor', Color.light)
+root.option_add('*Menu.borderwidth', 0)
+# root.option_add('*relief*Menu', "flat")
+# root.option_add('*Menu.hover', Color.dark_active)
+
+
+# root.option_add('*Menu.relief', "flat")
+# root.option_add('*Menu.tearoff', 1)
+
+menubtn = ttk.Menubutton(lf_menu, text="MENUBTN", style='TButton')
+menubtn.grid(row=4, column=0, sticky="news")
+
+# menu = tk.Menu(menubtn, tearoff=0, bg=Color.dark, fg=Color.light, font=Font.font_b, activebackground=Color.dark_active, activeforeground=Color.light, relief="flat" )
+menu = tk.Menu(menubtn, tearoff=0, activebackground=Color.dark_active)
+menu.add_command(label="Option 1", command=lambda: menubtn.configure(text="Option 1"))
+menu.add_command(label="Option 2", command=lambda: menubtn.configure(text="Option 2"))
+menu.add_command(label="Option 3", command=lambda: menubtn.configure(text="Option 3"))
+
+menubtn["menu"] = menu
+
+print(tk.Menu.slaves(menu))
+
+# root.option_add('*TMenubutton*background', Color.dark)
+# root.option_add('*TMenubutton*foreground', Color.light)
+# root.option_add('*TMenubutton*font', Font.font_b)
+# root.option_add('*TMenubutton*activebackground', Color.dark_active)
+# root.option_add('*TMenubutton*activeforeground', Color.light)
+# root.option_add('*TMenubutton*selectColor', Color.light)
+# root.option_add('*TMenubutton*relief', "flat")
+# root.option_add('*TMenubutton*border', 0)
+
+style.configure('TMenubutton', background=Color.dark, foreground=Color.light, font=Font.font_b, borderwidth=0, justify='center')
+style.map('TMenubutton', background=[('active', Color.dark_active)], foreground=[('active', Color.light)])
+
+
+
+selected_option = tk.StringVar(value="Option 1", name="selected_option", )
+menuop = ttk.OptionMenu(lf_menu, selected_option, "Option 1", "Option 1", "Option 2", "Option 3", style='TMenubutton')
+menuop.grid(row=4, column=2, sticky="news")
 
 #[MAIN-LOOP]####################################################################
 root.mainloop()
