@@ -33,7 +33,7 @@ root.configure(bg="#333")
 style = ttk.Style()
 style.theme_use('default')
 
-style.configure("TScrollbar", gripcount=0,
+style.configure("TScrollbar", gripcount=1,
                 background="#222", darkcolor="#222", lightcolor="#333",
                 troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
 

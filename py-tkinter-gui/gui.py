@@ -80,7 +80,7 @@ class Theme:
                 arrowcolor=self.color.foreground,
                 selectbackground=self.color.background_alt,
                 selectforeground=self.color.foreground_alt,
-                font=Font.font_b)  # Arrow color
+                font=Font.font_b)
         style.map('TCombobox', fieldbackground=[('active', self.color.background), ('disabled', Color.dark_disabled)], arrowcolor=[('active', Color.light_active)])
 
         root.option_add('*TCombobox*Listbox.background', self.color.background)  # Dark background
@@ -402,14 +402,14 @@ lf_scrollbar = ttk.LabelFrame(tab0, text="SCROLLBAR", style='Custom.TLabelframe'
 lf_scrollbar.grid(row=11, column=0, sticky="news")
 lf_scrollbar.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-style.configure("Custom.Vertical.TScrollbar",
-                background="#222", darkcolor="#222", lightcolor="#333",
-                troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
+# style.configure("Custom.Vertical.TScrollbar",
+#                 background="#222", darkcolor="#222", lightcolor="#333",
+#                 troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
 
-# Configure the Horizontal Scrollbar style
-style.configure("Custom.Horizontal.TScrollbar",
-                background="#222", darkcolor="#222", lightcolor="#333",
-                troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
+# # Configure the Horizontal Scrollbar style
+# style.configure("Custom.Horizontal.TScrollbar",
+#                 background="#222", darkcolor="#222", lightcolor="#333",
+#                 troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
 
 
 # Create a Canvas widget
@@ -479,7 +479,8 @@ treev = ttk.Treeview(tab1, selectmode ='browse')
 treev.grid(row=0, column=0, sticky="news")
 verscrlbar = ttk.Scrollbar(tab1, orient ="vertical", command = treev.yview)
 verscrlbar.grid(row=0, column=1, sticky="wns")
-treev.configure(xscrollcommand = verscrlbar.set)
+treev.configure(yscrollcommand = verscrlbar.set)
+# treev.bind('<Configure>', lambda e: treev.configure(scrollregion=treev.bbox("all")))
 treev["columns"] = ("1", "2", "3")
 treev['show'] = 'headings'
 treev.column("1", anchor ='c')
@@ -488,7 +489,7 @@ treev.column("3",  anchor ='c')
 treev.heading("1", text ="#")
 treev.heading("2", text = "NAME")
 treev.heading("3", text = "NUMBER")
-for i in range(180):
+for i in range(20):
     treev.insert("", 'end', text ="L1", values =(i, f"NAME{i}", f"NUMBER{i}"))
 
 
@@ -506,8 +507,87 @@ style.map("Horizontal.TScale",
           troughcolor=[("active", Color.dark)])#,
         #   sliderrelief=[("active", "solid")])
 
-ttk.LabeledScale(lf_labelScale, from_=0, to=100, variable=0).grid(row=1, column=1, columnspan=3, sticky="news")
+ttk.LabeledScale(lf_labelScale, from_=0, to=100).grid(row=1, column=1, columnspan=3, sticky="news")
+
+ttk.Scale(lf_labelScale, from_=0, to=100, orient="horizontal", command=lambda v: progressbar.config(value=float(v))).grid(row=2, column=1, columnspan=3, sticky="news")
 
 ttk.Label(lf_labelScale, text="HORIZONTAL", style='TLabel').grid(row=2, column=6, sticky="news")
+
+lf_pbar = ttk.LabelFrame(tab1, text="PROGRESSBAR", style='Custom.TLabelframe')
+lf_pbar.grid(row=2, column=0, sticky="news")
+lf_pbar.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+
+# style.configure("Custom.Horizontal.TProgressbar",
+#                 troughcolor=Color.dark,      # Background color of the track
+#                 background=Color.dark_active,  # Color of the progress bar itself
+#                 thickness=20)               # Adjust thickness for better appearance
+
+# Enable stripes for the Progressbar
+style.configure("TProgressbar",
+                lightcolor=Color.light,      # Light color for stripes
+                darkcolor=Color.dark_active, # Dark color for stripes
+                troughcolor=Color.dark,
+                background=Color.dark_active,
+                thickness=20)
+
+
+progressbar = ttk.Progressbar(lf_pbar, orient="horizontal", value=69, length=200, mode="determinate", style="TProgressbar")
+progressbar.grid(row=0, column=0, sticky="news")
+
+lf_Panedwindow = ttk.LabelFrame(tab1, text="PANEDWINDOW", style='Custom.TLabelframe')
+lf_Panedwindow.grid(row=3, column=0, sticky="news")
+lf_Panedwindow.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+style.configure("Custom.TPanedwindow",
+                background=Color.dark,       # Background color of the Panedwindow
+                gripcolor=Color.dark_active)  # Color of the grip area between panes
+
+# Configure the style for Panedwindow children (if needed)
+style.configure("Custom.TPanedwindow.Horizontal",
+                background=Color.dark)
+
+pwindow = ttk.Panedwindow(lf_Panedwindow, orient=HORIZONTAL, style="Custom.TPanedwindow")
+pwindow.grid(row=3, column=0, sticky="news")
+
+ttk.Label(pwindow, text="Pane 1", style='TLabel').pack(side=LEFT)
+
+lf_separator = ttk.LabelFrame(tab1, text="SEPARATOR", style='Custom.TLabelframe')
+lf_separator.grid(row=4, column=0, sticky="news")
+lf_separator.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+style.configure("TSeparator",
+                background=Color.warning,    # Background color of the separator
+                troughcolor=Color.warning,  # Color of the trough (background) of the separator
+                borderwidth=5)
+
+ttk.Separator(lf_separator, orient=HORIZONTAL).grid(row=0, column=0, sticky="news", pady=5, padx=5)
+ttk.Separator(lf_separator, orient=VERTICAL).grid(row=0, column=1, sticky="news", pady=5, padx=5)
+
+ttk.Label(lf_separator, text="SEPARATOR", style='TLabel').grid(row=0, column=2, sticky="news")
+
+lf_spinbox = ttk.LabelFrame(tab1, text="SPINBOX", style='Custom.TLabelframe')
+lf_spinbox.grid(row=5, column=0, sticky="news")
+lf_spinbox.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+style.configure("TSpinbox",
+                fieldbackground=Color.dark,   # Background color of the spinbox
+                background=Color.dark,        # Background color of the spinbox button
+                foreground=Color.light,       # Text color
+                borderwidth=1,                # Border width
+                relief="flat",
+                arrowcolor=Color.light
+                )                # Flat relief to match dark theme
+
+# Configure the focus color to blend with dark mode
+style.map("TSpinbox",
+          foreground=[("focus", Color.light)],
+          background=[("focus", Color.dark_active)],
+          fieldbackground=[("focus", Color.dark_active)],
+           arrowcolor=[('active', "#FFFFFF"), ('disabled', "#FFFFFF")])
+
+style.configure("TSpinbox.field", fg=Color.light, bg=Color.dark, font=Font.font_b)
+
+ttk.Spinbox(lf_spinbox, from_=0, to=100).grid(row=0, column=0, sticky="news")
 #[MAIN-LOOP]####################################################################
 root.mainloop()

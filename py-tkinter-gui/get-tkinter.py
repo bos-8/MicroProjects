@@ -73,4 +73,4 @@ def stylename_elements_options(stylename):
     # except tk.TclError as e:
     #     print(f'_tkinter.TclError: {e}')
 
-stylename_elements_options('LabeledScale')
+stylename_elements_options('TSpinbox')
