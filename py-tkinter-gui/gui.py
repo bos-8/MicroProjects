@@ -46,6 +46,14 @@ class Theme:
         style.map('TButton', background=[('active', self.color.background_alt), ('disabled', self.color.gray), ('hover', self.color.background)],
               foreground=[('disabled', self.color.foreground_alt)])
 
+        style.configure('TMenubutton', background=self.color.background, foreground=self.color.foreground, font=self.font.font_b, borderwidth=1,  padding=[5,5], width=10, arrowcolor=self.color.foreground,
+                selectbackground=self.color.background_alt,
+                selectforeground=self.color.foreground_alt, relief= "raised")
+        style.map('TMenubutton', background=[('active', self.color.background_alt), ('disabled', self.color.gray), ('hover', self.color.background)],
+              foreground=[('disabled', self.color.foreground_alt)])
+
+        # style.conf
+
         style.configure("Custom.TLabelframe",
                     font=Font.font_b,
                     foreground=self.color.foreground,
@@ -137,8 +145,18 @@ def toggle_theme():
 
 root = tk.Tk()
 #[STYLE]########################################################################
+
+
 style = ttk.Style()
 style.theme_use('default')
+
+# winnative
+# clam
+# alt
+# default
+# classic
+# vista
+# xpnative
 
 light_theme = Theme('light', LightTheme(), Font())
 dark_theme = Theme('dark', DarkTheme(), Font())
@@ -170,14 +188,16 @@ for style_name, colors in all_styles.items():
 #-------------------------------------------------------------------------------
 root.title("Tkinter GUI")
 root.resizable(0, 0)
-root.geometry("854x480") # 854x480 | 1023x576 | 1280x720 | 1600x900 | 1920x1080
+root.geometry("854x800") # 854x480 | 1023x576 | 1280x720 | 1600x900 | 1920x1080
 # root.configure(bg=Color.background)
 #-------------------------------------------------------------------------------
 # Notebook setup
 tabControl = ttk.Notebook(root, style='TNotebook')
 tab0, tab1 = ttk.Frame(tabControl, style='TFrame'), ttk.Frame(tabControl, style='TFrame')
-tabControl.add(tab0, text='TAB-0')
+
 tabControl.add(tab1, text='TAB-1')
+tabControl.add(tab0, text='TAB-0')
+
 tabControl.pack(expand=1, fill="both")
 # ('secondary.TButton' if current_theme == light_theme else 'light.TButton')
 btn_theme = ttk.Button(root, text="THEME", style=('dark.Tbutton' if current_theme.name == 'light' else 'light.TButton'), command=toggle_theme)
@@ -317,29 +337,23 @@ lf_menu.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 root.option_add('*Menu.background', Color.dark)
 root.option_add('*Menu.foreground', Color.light)
 root.option_add('*Menu.font', Font.font_b)
-root.option_add('*Menu*activebackground*', Color.dark_active)
-# root.option_add('*Menu.activeforeground', Color.light)
 root.option_add('*Menu.selectColor', Color.light)
-root.option_add('*Menu.focusColor', Color.light)
-root.option_add('*Menu.borderwidth', 0)
-# root.option_add('*relief*Menu', "flat")
-# root.option_add('*Menu.hover', Color.dark_active)
-
-
-# root.option_add('*Menu.relief', "flat")
-# root.option_add('*Menu.tearoff', 1)
+root.option_add('*Menu.activeBackground', Color.dark_active)
+root.option_add('*Menu.activeForeground', Color.light)
+root.option_add('*Menu.tearOff', 0)
 
 menubtn = ttk.Menubutton(lf_menu, text="MENUBTN", style='TButton')
 menubtn.grid(row=4, column=0, sticky="news")
 
 # menu = tk.Menu(menubtn, tearoff=0, bg=Color.dark, fg=Color.light, font=Font.font_b, activebackground=Color.dark_active, activeforeground=Color.light, relief="flat" )
-menu = tk.Menu(menubtn, tearoff=0, activebackground=Color.dark_active)
+menu = tk.Menu(menubtn)
 menu.add_command(label="Option 1", command=lambda: menubtn.configure(text="Option 1"))
 menu.add_command(label="Option 2", command=lambda: menubtn.configure(text="Option 2"))
 menu.add_command(label="Option 3", command=lambda: menubtn.configure(text="Option 3"))
+menu.add_separator()
+menu.add_checkbutton(label="Check 1", onvalue=1, offvalue=0, command=lambda: print("Check 1"))
 
 menubtn["menu"] = menu
-
 print(tk.Menu.slaves(menu))
 
 # root.option_add('*TMenubutton*background', Color.dark)
@@ -351,14 +365,149 @@ print(tk.Menu.slaves(menu))
 # root.option_add('*TMenubutton*relief', "flat")
 # root.option_add('*TMenubutton*border', 0)
 
-style.configure('TMenubutton', background=Color.dark, foreground=Color.light, font=Font.font_b, borderwidth=0, justify='center')
-style.map('TMenubutton', background=[('active', Color.dark_active)], foreground=[('active', Color.light)])
-
-
 
 selected_option = tk.StringVar(value="Option 1", name="selected_option", )
 menuop = ttk.OptionMenu(lf_menu, selected_option, "Option 1", "Option 1", "Option 2", "Option 3", style='TMenubutton')
 menuop.grid(row=4, column=2, sticky="news")
 
+
+menubtn1 = ttk.Menubutton(lf_menu, text="MENUBTN2", menu=menu)
+menubtn1.grid(row=4, column=3, sticky="news")
+
+# LISTBOX
+lf_listbox = ttk.LabelFrame(tab0, text="LISTBOX", style='Custom.TLabelframe')
+lf_listbox.grid(row=9, column=0, sticky="news")
+lf_listbox.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+listbox = tk.Listbox(lf_listbox, bg=Color.dark, fg=Color.light, font=Font.font_b, selectbackground=Color.dark_active, selectforeground=Color.light, height=3, borderwidth=0, highlightthickness=0)
+listbox.grid(row=0, column=0, sticky="news")
+listbox.insert(1, "Option 1")
+listbox.insert(2, "Option 2")
+listbox.insert(3, "Option 3")
+
+# CANVAS
+lf_canvas = ttk.LabelFrame(tab0, text="CANVAS", style='Custom.TLabelframe')
+lf_canvas.grid(row=10, column=0, sticky="news")
+lf_canvas.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+canvas = tk.Canvas(lf_canvas, bg=Color.dark, width=100, height=50, highlightthickness=0)
+canvas.grid(row=0, column=0, sticky="news")
+
+# Draw text on the Canvas
+canvas.create_text(50, 25, text="CANVAS", fill=Color.light, font=Font.font_b)
+
+
+# SCROLLBAR
+lf_scrollbar = ttk.LabelFrame(tab0, text="SCROLLBAR", style='Custom.TLabelframe')
+lf_scrollbar.grid(row=11, column=0, sticky="news")
+lf_scrollbar.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+style.configure("Custom.Vertical.TScrollbar",
+                background="#222", darkcolor="#222", lightcolor="#333",
+                troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
+
+# Configure the Horizontal Scrollbar style
+style.configure("Custom.Horizontal.TScrollbar",
+                background="#222", darkcolor="#222", lightcolor="#333",
+                troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
+
+
+# Create a Canvas widget
+canvas1 = tk.Canvas(lf_scrollbar, bg=Color.dark, width=100, height=100, highlightthickness=0)
+canvas1.grid(row=0, column=0, sticky="news")
+
+# Create vertical and horizontal scrollbars
+v_scrollbar = ttk.Scrollbar(lf_scrollbar, orient="vertical", command=canvas1.yview, style='Custom.Vertical.TScrollbar')
+# v_scrollbar = tk.Scrollbar(lf_scrollbar, orient="vertical", command=canvas1.yview, activebackground=Color.dark_active, bg=Color.dark, troughcolor=Color.dark, highlightthickness=0, highlightbackground=Color.dark, relief="flat", borderwidth=0, highlightcolor=Color.dark_active)
+v_scrollbar.grid(row=0, column=1, sticky="nsw")
+
+h_scrollbar = ttk.Scrollbar(lf_scrollbar, orient="horizontal", command=canvas1.xview, style='Custom.Horizontal.TScrollbar')
+h_scrollbar.grid(row=1, column=0, sticky="ew")
+
+
+# Configure the canvas to work with the scrollbars
+canvas1.config(xscrollcommand=h_scrollbar.set, yscrollcommand=v_scrollbar.set)
+canvas1.create_rectangle(10, 10, 110, 110, outline=Color.light, fill=Color.dark_active)
+canvas1.create_text(20, 25, text="CAN", fill=Color.light, font=Font.font_b)
+canvas1.create_text(200, 25, text="VAS", fill=Color.light, font=Font.font_b)
+
+#[TAB1]#########################################################################
+tab1.columnconfigure(0, weight=1)
+
+# Configure the Treeview style for all elements
+style.configure("Treeview",
+                background=Color.dark,
+                fieldbackground=Color.dark,
+                foreground=Color.light,
+                font=Font.font_b,
+                rowheight=25,
+                borderwidth=0,
+                highlightthickness=0,
+                selectbackground=Color.dark_active,
+                selectforeground=Color.light)
+
+# Configure the Treeview Heading (header) style
+style.configure("Treeview.Heading",
+                background=Color.dark_active,
+                foreground=Color.light,
+                font=Font.font_b,
+                borderwidth=0)
+
+style.map("Treeview.Heading",
+          background=[("active", Color.dark_hover)])  # Change background on hover
+
+
+style.map("Treeview",
+          background=[("selected", Color.dark_hover)],
+          foreground=[("selected", Color.light)])
+
+style.configure("TScrollbar", gripcount=0,
+                background="#222", darkcolor="#222", lightcolor="#333",
+                troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
+
+style.map("TScrollbar",
+            background=[('active', "#333"), ('disabled', "#222")],
+            darkcolor=[('active', "#333"), ('disabled', "#222")],
+            lightcolor=[('active', "#333"), ('disabled', "#222")],
+            troughcolor=[('active', "#1E1E1E"), ('disabled', "#1E1E1E")],
+            bordercolor=[('active', "#1E1E1E"), ('disabled', "#1E1E1E")],
+            arrowcolor=[('active', "#FFFFFF"), ('disabled', "#FFFFFF")])
+
+
+
+treev = ttk.Treeview(tab1, selectmode ='browse')
+treev.grid(row=0, column=0, sticky="news")
+verscrlbar = ttk.Scrollbar(tab1, orient ="vertical", command = treev.yview)
+verscrlbar.grid(row=0, column=1, sticky="wns")
+treev.configure(xscrollcommand = verscrlbar.set)
+treev["columns"] = ("1", "2", "3")
+treev['show'] = 'headings'
+treev.column("1", anchor ='c')
+treev.column("2",  anchor ='c')
+treev.column("3",  anchor ='c')
+treev.heading("1", text ="#")
+treev.heading("2", text = "NAME")
+treev.heading("3", text = "NUMBER")
+for i in range(180):
+    treev.insert("", 'end', text ="L1", values =(i, f"NAME{i}", f"NUMBER{i}"))
+
+
+lf_labelScale = ttk.LabelFrame(tab1, text="LABELSCALE", style='Custom.TLabelframe')
+lf_labelScale.grid(row=1, column=0, sticky="news")
+lf_labelScale.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+style.configure("Horizontal.TScale",
+                background=Color.dark, troughcolor=Color.dark_active,
+                 relief="flat")
+
+# Configure hover and active effects
+style.map("Horizontal.TScale",
+          background=[("active", Color.dark_active)],
+          troughcolor=[("active", Color.dark)])#,
+        #   sliderrelief=[("active", "solid")])
+
+ttk.LabeledScale(lf_labelScale, from_=0, to=100, variable=0).grid(row=1, column=1, columnspan=3, sticky="news")
+
+ttk.Label(lf_labelScale, text="HORIZONTAL", style='TLabel').grid(row=2, column=6, sticky="news")
 #[MAIN-LOOP]####################################################################
 root.mainloop()
