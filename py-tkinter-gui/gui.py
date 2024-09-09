@@ -356,15 +356,6 @@ menu.add_checkbutton(label="Check 1", onvalue=1, offvalue=0, command=lambda: pri
 menubtn["menu"] = menu
 print(tk.Menu.slaves(menu))
 
-# root.option_add('*TMenubutton*background', Color.dark)
-# root.option_add('*TMenubutton*foreground', Color.light)
-# root.option_add('*TMenubutton*font', Font.font_b)
-# root.option_add('*TMenubutton*activebackground', Color.dark_active)
-# root.option_add('*TMenubutton*activeforeground', Color.light)
-# root.option_add('*TMenubutton*selectColor', Color.light)
-# root.option_add('*TMenubutton*relief', "flat")
-# root.option_add('*TMenubutton*border', 0)
-
 
 selected_option = tk.StringVar(value="Option 1", name="selected_option", )
 menuop = ttk.OptionMenu(lf_menu, selected_option, "Option 1", "Option 1", "Option 2", "Option 3", style='TMenubutton')
@@ -517,12 +508,6 @@ lf_pbar = ttk.LabelFrame(tab1, text="PROGRESSBAR", style='Custom.TLabelframe')
 lf_pbar.grid(row=2, column=0, sticky="news")
 lf_pbar.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-
-# style.configure("Custom.Horizontal.TProgressbar",
-#                 troughcolor=Color.dark,      # Background color of the track
-#                 background=Color.dark_active,  # Color of the progress bar itself
-#                 thickness=20)               # Adjust thickness for better appearance
-
 # Enable stripes for the Progressbar
 style.configure("TProgressbar",
                 lightcolor=Color.light,      # Light color for stripes
@@ -589,5 +574,35 @@ style.map("TSpinbox",
 style.configure("TSpinbox.field", fg=Color.light, bg=Color.dark, font=Font.font_b)
 
 ttk.Spinbox(lf_spinbox, from_=0, to=100).grid(row=0, column=0, sticky="news")
+
+lf_scale = ttk.LabelFrame(tab1, text="SCALE", style='Custom.TLabelframe')
+lf_scale.grid(row=6, column=0, sticky="news")
+lf_scale.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
+
+style.configure("TSizegrip",
+                background=Color.dark,       # Background color of the Sizegrip
+                activebackground=Color.dark_active)  # Background color of the Sizegrip when active
+
+ttk.Sizegrip(lf_scale).grid(row=0, column=0, columnspan=2, sticky="news")
+
+# [v] Button
+# [v] Checkbutton
+# [v] Entry
+# [v] Frame
+# [v] Label
+# [v] LabelFrame
+# [v] Menubutton
+# [v] PanedWindow
+# [v] Radiobutton
+# [v] Scale
+# [v] Scrollbar
+# [v] Spinbox
+# [v] ttk.Combobox
+# [v] ttk.Notebook
+# [v] ttk.Progressbar
+# [v] ttk.Separator
+# [v] ttk.Sizegrip
+# [v] ttk.Treeview
+
 #[MAIN-LOOP]####################################################################
 root.mainloop()
