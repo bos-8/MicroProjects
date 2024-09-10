@@ -35,59 +35,93 @@ class Theme:
 
         root.configure(bg=self.color.background)
 
-        style.configure('TNotebook', background=self.color.background_alt, borderwidth=0)
+        style.configure('TNotebook',
+                        background=self.color.background_alt,
+                        borderwidth=0)
 
-        style.configure('TNotebook.Tab', background=self.color.background_alt, foreground=self.color.foreground, padding=[10, 5], borderwidth=0, font=self.font.font_b)
-        style.map('TNotebook.Tab', background=[("selected", self.color.background)], foreground=[("selected", self.color.foreground_alt)])
+        style.configure('TNotebook.Tab',
+                        background=self.color.background_alt,
+                        foreground=self.color.foreground,
+                        padding=[10, 5],
+                        borderwidth=0,
+                        font=self.font.font_b)
+
+        style.map('TNotebook.Tab',
+                  background=[("selected", self.color.background)],
+                  foreground=[("selected", self.color.foreground_alt)])
 
         style.configure('TFrame', background=self.color.background)
 
-        style.configure('TButton', background=self.color.background, foreground=self.color.foreground, font=self.font.font_b, padding=[5, 5])
-        style.map('TButton', background=[('active', self.color.background_alt), ('disabled', self.color.gray), ('hover', self.color.background)],
-              foreground=[('disabled', self.color.foreground_alt)])
+        style.configure('TButton',
+                        background=self.color.background,
+                        foreground=self.color.foreground,
+                        font=self.font.font_b,
+                        padding=[5, 5])
+        style.map('TButton',
+                  background=[('active', self.color.background_alt), ('disabled', self.color.gray), ('hover', self.color.background)],
+                  foreground=[('disabled', self.color.foreground_alt)])
 
-        style.configure('TMenubutton', background=self.color.background, foreground=self.color.foreground, font=self.font.font_b, borderwidth=1,  padding=[5,5], width=10, arrowcolor=self.color.foreground,
-                selectbackground=self.color.background_alt,
-                selectforeground=self.color.foreground_alt, relief= "raised")
+        style.configure('TMenubutton',
+                        background=self.color.background,
+                        foreground=self.color.foreground,
+                        font=self.font.font_b,
+                        borderwidth=1,
+                        padding=[5,5],
+                        width=10,
+                        arrowcolor=self.color.foreground,
+                        selectbackground=self.color.background_alt,
+                        selectforeground=self.color.foreground_alt, relief= "raised")
 
-        style.map('TMenubutton', background=[('active', self.color.background_alt), ('disabled', self.color.gray), ('hover', self.color.background)],
-              foreground=[('disabled', self.color.foreground_alt)])
+        style.map('TMenubutton',
+                  background=[('active', self.color.background_alt), ('disabled', self.color.gray), ('hover', self.color.background)],
+                  foreground=[('disabled', self.color.foreground_alt)])
 
-        style.configure("Custom.TLabelframe",
-                    font=Font.font_b,
-                    foreground=self.color.foreground,
-                    background=self.color.background,
-                    borderwidth=1,
-                    relief="groove")
+        style.configure("TLabelframe",
+                        font=Font.font_b,
+                        foreground=self.color.foreground,
+                        background=self.color.background,
+                        borderwidth=1,
+                        relief="groove")
 
-        style.configure("Custom.TLabelframe.Label",
+        style.configure("TLabelframe.Label",
                     font=Font.font_b,
                     foreground=self.color.foreground,
                     background=self.color.background)
 
-        style.configure('TLabel', background=self.color.background, foreground=self.color.foreground, font=self.font.font_b)
+        style.configure('TLabel',
+                        background=self.color.background,
+                        foreground=self.color.foreground,
+                        font=self.font.font_b)
 
-        style.configure('TEntry', fieldbackground=self.color.background, foreground=self.color.foreground, font=self.font.font_b)
+        style.configure('TEntry',
+                        fieldbackground=self.color.background,
+                        foreground=self.color.foreground,
+                        font=self.font.font_b)
 
         style.configure('TCombobox',
-                foreground=self.color.foreground,
-                background=self.color.background,
-                fieldbackground=self.color.background,
-                arrowcolor=self.color.foreground,
-                selectbackground=self.color.background_alt,
-                selectforeground=self.color.foreground_alt,
-                font=Font.font_b)
+                        foreground=self.color.foreground,
+                        background=self.color.background,
+                        fieldbackground=self.color.background,
+                        arrowcolor=self.color.foreground,
+                        selectbackground=self.color.background_alt,
+                        selectforeground=self.color.foreground_alt,
+                        font=Font.font_b)
 
-        style.map('TCombobox', fieldbackground=[('active', self.color.background), ('disabled', Color.dark_disabled)], arrowcolor=[('active', Color.light_active)])
+        style.map('TCombobox',
+                  fieldbackground=[('active', self.color.background), ('disabled', Color.dark_disabled)],
+                  arrowcolor=[('active', Color.light_active)])
 
-        root.option_add('*TCombobox*Listbox.background', self.color.background)  # Dark background
-        root.option_add('*TCombobox*Listbox.foreground', self.color.foreground)  # Light foreground
-        root.option_add('*TCombobox*Listbox.font', Font.font_b)  # Font for dropdown list
-        root.option_add('*TCombobox*Listbox.selectBackground', self.color.background_alt)  # Selected background
-        root.option_add('*TCombobox*Listbox.selectForeground', self.color.foreground_alt)  # Selected foreground
+        root.option_add('*TCombobox*Listbox.background', self.color.background)
+        root.option_add('*TCombobox*Listbox.foreground', self.color.foreground)
+        root.option_add('*TCombobox*Listbox.font', Font.font_b)
+        root.option_add('*TCombobox*Listbox.selectBackground', self.color.background_alt)
+        root.option_add('*TCombobox*Listbox.selectForeground', self.color.foreground_alt)
 
-
-        style.configure('TRadiobutton', background=Color.dark, foreground=Color.light, font=Font.font_b, selectcolor=Color.dark)
+        style.configure('TRadiobutton',
+                        background=Color.dark,
+                        foreground=Color.light,
+                        font=Font.font_b,
+                        selectcolor=Color.dark)
 
         root.option_add('*Menu.background', Color.dark)
         root.option_add('*Menu.foreground', Color.light)
@@ -97,19 +131,25 @@ class Theme:
         root.option_add('*Menu.activeForeground', Color.light)
         root.option_add('*Menu.tearOff', 0)
 
-        style.configure('Custom.TCheckbutton', background=Color.dark, anchor='center', foreground=Color.light, font=Font.font_b)
-        style.map('Custom.TCheckbutton', background=[('active', Color.dark_active)], foreground=[('selected', Color.light)])
+        style.configure('TCheckbutton',
+                        background=Color.dark,
+                        anchor='center',
+                        foreground=Color.light,
+                        font=Font.font_b)
+        style.map('TCheckbutton',
+                  background=[('active', Color.dark_active)],
+                  foreground=[('selected', Color.light)])
 
         style.configure("Treeview",
-                background=Color.dark,
-                fieldbackground=Color.dark,
-                foreground=Color.light,
-                font=Font.font_b,
-                rowheight=25,
-                borderwidth=0,
-                highlightthickness=0,
-                selectbackground=Color.dark_active,
-                selectforeground=Color.light)
+                        background=Color.dark,
+                        fieldbackground=Color.dark,
+                        foreground=Color.light,
+                        font=Font.font_b,
+                        rowheight=25,
+                        borderwidth=0,
+                        highlightthickness=0,
+                        selectbackground=Color.dark_active,
+                        selectforeground=Color.light)
 
         style.configure("Treeview.Heading",
                         background=Color.dark_active,
@@ -118,11 +158,11 @@ class Theme:
                         borderwidth=0)
 
         style.map("Treeview.Heading",
-                background=[("active", Color.dark_hover)])
+                  background=[("active", Color.dark_hover)])
 
         style.map("Treeview",
-                background=[("selected", Color.dark_hover)],
-                foreground=[("selected", Color.light)])
+                  background=[("selected", Color.dark_hover)],
+                  foreground=[("selected", Color.light)])
 
         style.configure("TScrollbar", gripcount=0,
                         background="#222", darkcolor="#222", lightcolor="#333",
@@ -137,12 +177,13 @@ class Theme:
                     arrowcolor=[('active', "#FFFFFF"), ('disabled', "#FFFFFF")])
 
         style.configure("Horizontal.TScale",
-                background=Color.dark, troughcolor=Color.dark_active,
-                 relief="flat")
+                        background=Color.dark,
+                        troughcolor=Color.dark_active,
+                        relief="flat")
 
         style.map("Horizontal.TScale",
-                background=[("active", Color.dark_active)],
-                troughcolor=[("active", Color.dark)])
+                  background=[("active", Color.dark_active)],
+                  troughcolor=[("active", Color.dark)])
 
         style.configure("TProgressbar",
                         lightcolor=Color.light,
@@ -151,34 +192,39 @@ class Theme:
                         background=Color.dark_active,
                         thickness=20)
 
-        style.configure("Custom.TPanedwindow",
-                background=Color.dark,
-                gripcolor=Color.dark_active)
+        style.configure("TPanedwindow",
+                        background=Color.dark,
+                        gripcolor=Color.dark_active)
 
-        style.configure("Custom.TPanedwindow.Horizontal",
+        style.configure("TPanedwindow.Horizontal",
                         background=Color.dark)
 
         style.configure("TSeparator",
-                background=Color.warning,
-                troughcolor=Color.warning,
-                borderwidth=5)
+                        background=Color.warning,
+                        troughcolor=Color.warning,
+                        borderwidth=5)
 
         style.configure("TSpinbox",
-                fieldbackground=Color.dark,
-                background=Color.dark,
-                foreground=Color.light,
-                borderwidth=1,
-                relief="flat",
-                arrowcolor=Color.light)
+                        fieldbackground=Color.dark,
+                        background=Color.dark,
+                        foreground=Color.light,
+                        borderwidth=1,
+                        relief="flat",
+                        arrowcolor=Color.light)
         style.map("TSpinbox",
-                foreground=[("focus", Color.light)],
-                background=[("focus", Color.dark_active)],
-                fieldbackground=[("focus", Color.dark_active)],
-                arrowcolor=[('active', "#FFFFFF"), ('disabled', "#FFFFFF")])
+                  foreground=[("focus", Color.light)],
+                  background=[("focus", Color.dark_active)],
+                  fieldbackground=[("focus", Color.dark_active)],
+                  arrowcolor=[('active', "#FFFFFF"), ('disabled', "#FFFFFF")])
 
-        style.configure("TSpinbox.field", fg=Color.light, bg=Color.dark, font=Font.font_b)
+        style.configure("TSpinbox.field",
+                        fg=Color.light,
+                        bg=Color.dark,
+                        font=Font.font_b)
 
-        style.configure("TSizegrip", background=Color.dark, activebackground=Color.dark_active)
+        style.configure("TSizegrip",
+                        background=Color.dark,
+                        activebackground=Color.dark_active)
 
 class Color:
     primary = "#0d6efd"
@@ -277,9 +323,9 @@ root.geometry("854x800") # 854x480 | 1023x576 | 1280x720 | 1600x900 | 1920x1080
 # Notebook setup
 tabControl = ttk.Notebook(root, style='TNotebook')
 tab0, tab1 = ttk.Frame(tabControl, style='TFrame'), ttk.Frame(tabControl, style='TFrame')
-
-tabControl.add(tab1, text='TAB-1')
 tabControl.add(tab0, text='TAB-0')
+tabControl.add(tab1, text='TAB-1')
+
 
 tabControl.pack(expand=1, fill="both")
 btn_theme = ttk.Button(root, text="THEME", style=('dark.Tbutton' if current_theme.name == 'light' else 'light.TButton'), command=toggle_theme)
@@ -291,11 +337,11 @@ ttk.Button(root, text="THEME", style='TButton', command=toggle_theme).place(relx
 tab0.columnconfigure(0, weight=1)
 
 # LABEL
-lf_label = ttk.LabelFrame(tab0, text="LABELS", style='Custom.TLabelframe')
+lf_label = ttk.LabelFrame(tab0, text="LABELS")
 lf_label.grid(row=0, column=0, sticky="news")
 lf_label.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-ttk.Label(lf_label, text="STANDARD", style='TLabel').grid(row=0, column=0, sticky="news", pady=5)
+ttk.Label(lf_label, text="STANDARD").grid(row=0, column=0, sticky="news", pady=5)
 ttk.Label(lf_label, text="PRIMARY", style='primary.TLabel').grid(row=0, column=1, sticky="news", pady=5)
 ttk.Label(lf_label, text="SECONDARY", style='secondary.TLabel').grid(row=0, column=2, sticky="news", pady=5)
 ttk.Label(lf_label, text="SUCCESS", style='success.TLabel').grid(row=0, column=3, sticky="news", pady=5)
@@ -306,11 +352,11 @@ ttk.Label(lf_label, text="LIGHT", style='light.TLabel').grid(row=0, column=7, st
 ttk.Label(lf_label, text="DARK", style='dark.TLabel').grid(row=0, column=8, sticky="news", pady=5)
 
 # BTN
-lf_btn = ttk.LabelFrame(tab0, text="BUTTONS", style='Custom.TLabelframe')
+lf_btn = ttk.LabelFrame(tab0, text="BUTTONS")
 lf_btn.grid(row=1, column=0, sticky="news")
 lf_btn.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-ttk.Button(lf_btn, text="STANDARD", style='TButton').grid(row=0, column=0, sticky="news")
+ttk.Button(lf_btn, text="STANDARD").grid(row=0, column=0, sticky="news")
 ttk.Button(lf_btn, text="PRIMARY", style='primary.TButton').grid(row=0, column=1, sticky="news")
 ttk.Button(lf_btn, text="SECONDARY", style='secondary.TButton').grid(row=0, column=2, sticky="news")
 ttk.Button(lf_btn, text="SUCCESS", style='success.TButton').grid(row=0, column=3, sticky="news")
@@ -320,7 +366,7 @@ ttk.Button(lf_btn, text="DANGER", style='danger.TButton').grid(row=0, column=6, 
 ttk.Button(lf_btn, text="LIGHT", style='light.TButton').grid(row=0, column=7, sticky="news")
 ttk.Button(lf_btn, text="DARK", style='dark.TButton').grid(row=0, column=8, sticky="news")
 
-ttk.Button(lf_btn, text="DISABLED", style='TButton', state="disabled").grid(row=1, column=0, sticky="news")
+ttk.Button(lf_btn, text="DISABLED", state="disabled").grid(row=1, column=0, sticky="news")
 ttk.Button(lf_btn, text="DISABLED", style='primary.TButton', state="disabled").grid(row=1, column=1, sticky="news")
 ttk.Button(lf_btn, text="DISABLED", style='secondary.TButton', state="disabled").grid(row=1, column=2, sticky="news")
 ttk.Button(lf_btn, text="DISABLED", style='success.TButton', state="disabled").grid(row=1, column=3, sticky="news")
@@ -331,11 +377,11 @@ ttk.Button(lf_btn, text="DISABLED", style='light.TButton', state="disabled").gri
 ttk.Button(lf_btn, text="DISABLED", style='dark.TButton', state="disabled").grid(row=1, column=8, sticky="news")
 
 # FRAME
-lf_frame = ttk.LabelFrame(tab0, text="FRAMES", style='Custom.TLabelframe')
+lf_frame = ttk.LabelFrame(tab0, text="FRAMES")
 lf_frame.grid(row=2, column=0, sticky="news")
 lf_frame.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-standard_f = ttk.Frame(lf_frame, style='TFrame')
+standard_f = ttk.Frame(lf_frame)
 standard_f.grid(row=0, column=0, sticky="news")
 ttk.Label(standard_f, text="STANDARD", style='TLabel').pack(pady=5)
 primary_f = ttk.Frame(lf_frame, style='primary.TFrame')
@@ -364,11 +410,11 @@ dark_f.grid(row=0, column=8, sticky="news")
 ttk.Label(dark_f, text="DARK", style='dark.TLabel').pack(pady=5)
 
 # ENTRY
-lf_entry = ttk.LabelFrame(tab0, text="ENTRIES", style='Custom.TLabelframe')
+lf_entry = ttk.LabelFrame(tab0, text="ENTRIES")
 lf_entry.grid(row=3, column=0, sticky="news")
 lf_entry.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-ttk.Entry(lf_entry, style='TEntry').grid(row=0, column=0, sticky="news")
+ttk.Entry(lf_entry).grid(row=0, column=0, sticky="news")
 ttk.Entry(lf_entry, style='primary.TEntry').grid(row=0, column=1, sticky="news")
 ttk.Entry(lf_entry, style='secondary.TEntry').grid(row=0, column=2, sticky="news")
 ttk.Entry(lf_entry, style='success.TEntry').grid(row=0, column=3, sticky="news")
@@ -380,30 +426,30 @@ ttk.Entry(lf_entry, style='dark.TEntry').grid(row=0, column=8, sticky="news")
 
 
 # CHECKBUTTON
-lf_checkbutton = ttk.LabelFrame(tab0, text="CHECKBUTTONS", style='Custom.TLabelframe')
+lf_checkbutton = ttk.LabelFrame(tab0, text="CHECKBUTTONS")
 lf_checkbutton.grid(row=5, column=0, sticky="news")
 lf_checkbutton.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-ttk.Checkbutton(lf_checkbutton, text="test", style="Custom.TCheckbutton").grid(row=1, column=0, sticky="news")
+ttk.Checkbutton(lf_checkbutton, text="test").grid(row=1, column=0, sticky="news")
 tk.Checkbutton(lf_checkbutton, text="test", bg=Color.dark, fg=Color.light, selectcolor=Color.dark, font=Font.font_b).grid(row=1, column=1, sticky="news")
 
 # RADIOBUTTON
-lf_radiobutton = ttk.LabelFrame(tab0, text="RADIOBUTTONS", style='Custom.TLabelframe')
+lf_radiobutton = ttk.LabelFrame(tab0, text="RADIOBUTTONS")
 lf_radiobutton.grid(row=6, column=0, sticky="news")
 lf_radiobutton.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-ttk.Radiobutton(lf_radiobutton, text="test", style="TCheckbutton").grid(row=2, column=0, sticky="news")
+ttk.Radiobutton(lf_radiobutton, text="test").grid(row=2, column=0, sticky="news")
 tk.Radiobutton(lf_radiobutton, text="test", bg=Color.dark, fg=Color.light, selectcolor=Color.dark, font=Font.font_b).grid(row=2, column=1, sticky="news")
 
 # COMBOBOX
-lf_combobox = ttk.LabelFrame(tab0, text="COMBOBOXES", style='Custom.TLabelframe')
+lf_combobox = ttk.LabelFrame(tab0, text="COMBOBOXES")
 lf_combobox.grid(row=7, column=0, sticky="news")
 lf_combobox.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-ttk.Combobox(lf_combobox, values=["OPT1", "OPT2", "OPT3"], style='TCombobox').grid(row=3, column=0, sticky="news")
+ttk.Combobox(lf_combobox, values=["OPT1", "OPT2", "OPT3"]).grid(row=3, column=0, sticky="news")
 
 # MENUBTN
-lf_menu = ttk.LabelFrame(tab0, text="MENUBUTTON", style='Custom.TLabelframe')
+lf_menu = ttk.LabelFrame(tab0, text="MENUBUTTON")
 lf_menu.grid(row=8, column=0, sticky="news")
 lf_menu.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
@@ -421,7 +467,7 @@ menu.add_checkbutton(label="Check 1", onvalue=1, offvalue=0, command=lambda: pri
 menubtn["menu"] = menu
 
 selected_option = tk.StringVar(value="Option 1", name="selected_option", )
-menuop = ttk.OptionMenu(lf_menu, selected_option, "Option 1", "Option 1", "Option 2", "Option 3", style='TMenubutton')
+menuop = ttk.OptionMenu(lf_menu, selected_option, "Option 1", "Option 1", "Option 2", "Option 3")
 menuop.grid(row=4, column=2, sticky="news")
 
 
@@ -429,7 +475,7 @@ menubtn1 = ttk.Menubutton(lf_menu, text="MENUBTN2", menu=menu)
 menubtn1.grid(row=4, column=3, sticky="news")
 
 # LISTBOX
-lf_listbox = ttk.LabelFrame(tab0, text="LISTBOX", style='Custom.TLabelframe')
+lf_listbox = ttk.LabelFrame(tab0, text="LISTBOX")
 lf_listbox.grid(row=9, column=0, sticky="news")
 lf_listbox.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
@@ -440,7 +486,7 @@ listbox.insert(2, "Option 2")
 listbox.insert(3, "Option 3")
 
 # CANVAS
-lf_canvas = ttk.LabelFrame(tab0, text="CANVAS", style='Custom.TLabelframe')
+lf_canvas = ttk.LabelFrame(tab0, text="CANVAS")
 lf_canvas.grid(row=10, column=0, sticky="news")
 lf_canvas.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
@@ -450,17 +496,17 @@ canvas.grid(row=0, column=0, sticky="news")
 canvas.create_text(50, 25, text="CANVAS", fill=Color.light, font=Font.font_b)
 
 # SCROLLBAR
-lf_scrollbar = ttk.LabelFrame(tab0, text="SCROLLBAR", style='Custom.TLabelframe')
+lf_scrollbar = ttk.LabelFrame(tab0, text="SCROLLBAR")
 lf_scrollbar.grid(row=11, column=0, sticky="news")
 lf_scrollbar.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
 canvas1 = tk.Canvas(lf_scrollbar, bg=Color.dark, width=100, height=100, highlightthickness=0)
 canvas1.grid(row=0, column=0, sticky="news")
 
-v_scrollbar = ttk.Scrollbar(lf_scrollbar, orient="vertical", command=canvas1.yview, style='Custom.Vertical.TScrollbar')
+v_scrollbar = ttk.Scrollbar(lf_scrollbar, orient="vertical", command=canvas1.yview)
 v_scrollbar.grid(row=0, column=1, sticky="nsw")
 
-h_scrollbar = ttk.Scrollbar(lf_scrollbar, orient="horizontal", command=canvas1.xview, style='Custom.Horizontal.TScrollbar')
+h_scrollbar = ttk.Scrollbar(lf_scrollbar, orient="horizontal", command=canvas1.xview)
 h_scrollbar.grid(row=1, column=0, sticky="ew")
 
 canvas1.config(xscrollcommand=h_scrollbar.set, yscrollcommand=v_scrollbar.set)
@@ -489,7 +535,7 @@ for i in range(20):
     treev.insert("", 'end', text ="L1", values =(i, f"NAME{i}", f"NUMBER{i}"))
 
 
-lf_labelScale = ttk.LabelFrame(tab1, text="LABELSCALE", style='Custom.TLabelframe')
+lf_labelScale = ttk.LabelFrame(tab1, text="LABELSCALE")
 lf_labelScale.grid(row=1, column=0, sticky="news")
 lf_labelScale.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
@@ -497,25 +543,25 @@ ttk.LabeledScale(lf_labelScale, from_=0, to=100).grid(row=1, column=1, columnspa
 
 ttk.Scale(lf_labelScale, from_=0, to=100, orient="horizontal", command=lambda v: progressbar.config(value=float(v))).grid(row=2, column=1, columnspan=3, sticky="news")
 
-ttk.Label(lf_labelScale, text="HORIZONTAL", style='TLabel').grid(row=2, column=6, sticky="news")
+ttk.Label(lf_labelScale, text="HORIZONTAL").grid(row=2, column=6, sticky="news")
 
-lf_pbar = ttk.LabelFrame(tab1, text="PROGRESSBAR", style='Custom.TLabelframe')
+lf_pbar = ttk.LabelFrame(tab1, text="PROGRESSBAR")
 lf_pbar.grid(row=2, column=0, sticky="news")
 lf_pbar.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-progressbar = ttk.Progressbar(lf_pbar, orient="horizontal", value=69, length=200, mode="determinate", style="TProgressbar")
+progressbar = ttk.Progressbar(lf_pbar, orient="horizontal", value=69, length=200, mode="determinate")
 progressbar.grid(row=0, column=0, sticky="news")
 
-lf_Panedwindow = ttk.LabelFrame(tab1, text="PANEDWINDOW", style='Custom.TLabelframe')
+lf_Panedwindow = ttk.LabelFrame(tab1, text="PANEDWINDOW")
 lf_Panedwindow.grid(row=3, column=0, sticky="news")
 lf_Panedwindow.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-pwindow = ttk.Panedwindow(lf_Panedwindow, orient=HORIZONTAL, style="Custom.TPanedwindow")
+pwindow = ttk.Panedwindow(lf_Panedwindow, orient=HORIZONTAL)
 pwindow.grid(row=3, column=0, sticky="news")
 
 ttk.Label(pwindow, text="Pane 1", style='TLabel').pack(side=LEFT)
 
-lf_separator = ttk.LabelFrame(tab1, text="SEPARATOR", style='Custom.TLabelframe')
+lf_separator = ttk.LabelFrame(tab1, text="SEPARATOR")
 lf_separator.grid(row=4, column=0, sticky="news")
 lf_separator.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
@@ -524,13 +570,13 @@ ttk.Separator(lf_separator, orient=VERTICAL).grid(row=0, column=1, sticky="news"
 
 ttk.Label(lf_separator, text="SEPARATOR", style='TLabel').grid(row=0, column=2, sticky="news")
 
-lf_spinbox = ttk.LabelFrame(tab1, text="SPINBOX", style='Custom.TLabelframe')
+lf_spinbox = ttk.LabelFrame(tab1, text="SPINBOX")
 lf_spinbox.grid(row=5, column=0, sticky="news")
 lf_spinbox.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
 ttk.Spinbox(lf_spinbox, from_=0, to=100).grid(row=0, column=0, sticky="news")
 
-lf_scale = ttk.LabelFrame(tab1, text="SCALE", style='Custom.TLabelframe')
+lf_scale = ttk.LabelFrame(tab1, text="SCALE")
 lf_scale.grid(row=6, column=0, sticky="news")
 lf_scale.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
