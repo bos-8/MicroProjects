@@ -32,10 +32,10 @@ class Theme:
         self.color = color
         self.font = font
     def apply(self, style):
+
         root.configure(bg=self.color.background)
 
         style.configure('TNotebook', background=self.color.background_alt, borderwidth=0)
-        # style.configure('TNotebook', background=Color.background_alt, borderwidth=0)
 
         style.configure('TNotebook.Tab', background=self.color.background_alt, foreground=self.color.foreground, padding=[10, 5], borderwidth=0, font=self.font.font_b)
         style.map('TNotebook.Tab', background=[("selected", self.color.background)], foreground=[("selected", self.color.foreground_alt)])
@@ -49,10 +49,9 @@ class Theme:
         style.configure('TMenubutton', background=self.color.background, foreground=self.color.foreground, font=self.font.font_b, borderwidth=1,  padding=[5,5], width=10, arrowcolor=self.color.foreground,
                 selectbackground=self.color.background_alt,
                 selectforeground=self.color.foreground_alt, relief= "raised")
+
         style.map('TMenubutton', background=[('active', self.color.background_alt), ('disabled', self.color.gray), ('hover', self.color.background)],
               foreground=[('disabled', self.color.foreground_alt)])
-
-        # style.conf
 
         style.configure("Custom.TLabelframe",
                     font=Font.font_b,
@@ -70,17 +69,15 @@ class Theme:
 
         style.configure('TEntry', fieldbackground=self.color.background, foreground=self.color.foreground, font=self.font.font_b)
 
-        # style.configure('Custom.TCheckbutton', background=self.color.background, justify='center', foreground=self.color.foreground, font=self.font.font_b)
-        # style.map('Custom.TCheckbutton', background=[('active', self.color.background_alt)], foreground=[('selected', self.color.foreground)])
-
         style.configure('TCombobox',
-                foreground=self.color.foreground,  # Text color
-                background=self.color.background,  # Background color
-                fieldbackground=self.color.background,  # Field background color
+                foreground=self.color.foreground,
+                background=self.color.background,
+                fieldbackground=self.color.background,
                 arrowcolor=self.color.foreground,
                 selectbackground=self.color.background_alt,
                 selectforeground=self.color.foreground_alt,
                 font=Font.font_b)
+
         style.map('TCombobox', fieldbackground=[('active', self.color.background), ('disabled', Color.dark_disabled)], arrowcolor=[('active', Color.light_active)])
 
         root.option_add('*TCombobox*Listbox.background', self.color.background)  # Dark background
@@ -89,6 +86,99 @@ class Theme:
         root.option_add('*TCombobox*Listbox.selectBackground', self.color.background_alt)  # Selected background
         root.option_add('*TCombobox*Listbox.selectForeground', self.color.foreground_alt)  # Selected foreground
 
+
+        style.configure('TRadiobutton', background=Color.dark, foreground=Color.light, font=Font.font_b, selectcolor=Color.dark)
+
+        root.option_add('*Menu.background', Color.dark)
+        root.option_add('*Menu.foreground', Color.light)
+        root.option_add('*Menu.font', Font.font_b)
+        root.option_add('*Menu.selectColor', Color.light)
+        root.option_add('*Menu.activeBackground', Color.dark_active)
+        root.option_add('*Menu.activeForeground', Color.light)
+        root.option_add('*Menu.tearOff', 0)
+
+        style.configure('Custom.TCheckbutton', background=Color.dark, anchor='center', foreground=Color.light, font=Font.font_b)
+        style.map('Custom.TCheckbutton', background=[('active', Color.dark_active)], foreground=[('selected', Color.light)])
+
+        style.configure("Treeview",
+                background=Color.dark,
+                fieldbackground=Color.dark,
+                foreground=Color.light,
+                font=Font.font_b,
+                rowheight=25,
+                borderwidth=0,
+                highlightthickness=0,
+                selectbackground=Color.dark_active,
+                selectforeground=Color.light)
+
+        style.configure("Treeview.Heading",
+                        background=Color.dark_active,
+                        foreground=Color.light,
+                        font=Font.font_b,
+                        borderwidth=0)
+
+        style.map("Treeview.Heading",
+                background=[("active", Color.dark_hover)])
+
+        style.map("Treeview",
+                background=[("selected", Color.dark_hover)],
+                foreground=[("selected", Color.light)])
+
+        style.configure("TScrollbar", gripcount=0,
+                        background="#222", darkcolor="#222", lightcolor="#333",
+                        troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
+
+        style.map("TScrollbar",
+                    background=[('active', "#333"), ('disabled', "#222")],
+                    darkcolor=[('active', "#333"), ('disabled', "#222")],
+                    lightcolor=[('active', "#333"), ('disabled', "#222")],
+                    troughcolor=[('active', "#1E1E1E"), ('disabled', "#1E1E1E")],
+                    bordercolor=[('active', "#1E1E1E"), ('disabled', "#1E1E1E")],
+                    arrowcolor=[('active', "#FFFFFF"), ('disabled', "#FFFFFF")])
+
+        style.configure("Horizontal.TScale",
+                background=Color.dark, troughcolor=Color.dark_active,
+                 relief="flat")
+
+        style.map("Horizontal.TScale",
+                background=[("active", Color.dark_active)],
+                troughcolor=[("active", Color.dark)])
+
+        style.configure("TProgressbar",
+                        lightcolor=Color.light,
+                        darkcolor=Color.dark_active,
+                        troughcolor=Color.dark,
+                        background=Color.dark_active,
+                        thickness=20)
+
+        style.configure("Custom.TPanedwindow",
+                background=Color.dark,
+                gripcolor=Color.dark_active)
+
+        style.configure("Custom.TPanedwindow.Horizontal",
+                        background=Color.dark)
+
+        style.configure("TSeparator",
+                background=Color.warning,
+                troughcolor=Color.warning,
+                borderwidth=5)
+
+        style.configure("TSpinbox",
+                fieldbackground=Color.dark,
+                background=Color.dark,
+                foreground=Color.light,
+                borderwidth=1,
+                relief="flat",
+                arrowcolor=Color.light)
+        style.map("TSpinbox",
+                foreground=[("focus", Color.light)],
+                background=[("focus", Color.dark_active)],
+                fieldbackground=[("focus", Color.dark_active)],
+                arrowcolor=[('active', "#FFFFFF"), ('disabled', "#FFFFFF")])
+
+        style.configure("TSpinbox.field", fg=Color.light, bg=Color.dark, font=Font.font_b)
+
+        style.configure("TSizegrip", background=Color.dark, activebackground=Color.dark_active)
 
 class Color:
     primary = "#0d6efd"
@@ -150,14 +240,6 @@ root = tk.Tk()
 style = ttk.Style()
 style.theme_use('default')
 
-# winnative
-# clam
-# alt
-# default
-# classic
-# vista
-# xpnative
-
 light_theme = Theme('light', LightTheme(), Font())
 dark_theme = Theme('dark', DarkTheme(), Font())
 
@@ -184,12 +266,13 @@ for style_name, colors in all_styles.items():
     style.configure(f'{style_name}.TFrame', background=colors[0])
     style.configure(f'{style_name}.TEntry', fieldbackground=colors[0], foreground=colors[4], font=Font.font_b)
 
+
+
 #[ROOT]#########################################################################
 #-------------------------------------------------------------------------------
 root.title("Tkinter GUI")
 root.resizable(0, 0)
 root.geometry("854x800") # 854x480 | 1023x576 | 1280x720 | 1600x900 | 1920x1080
-# root.configure(bg=Color.background)
 #-------------------------------------------------------------------------------
 # Notebook setup
 tabControl = ttk.Notebook(root, style='TNotebook')
@@ -199,7 +282,6 @@ tabControl.add(tab1, text='TAB-1')
 tabControl.add(tab0, text='TAB-0')
 
 tabControl.pack(expand=1, fill="both")
-# ('secondary.TButton' if current_theme == light_theme else 'light.TButton')
 btn_theme = ttk.Button(root, text="THEME", style=('dark.Tbutton' if current_theme.name == 'light' else 'light.TButton'), command=toggle_theme)
 btn_theme.place(relx=1, rely=0, anchor="ne")
 
@@ -302,22 +384,13 @@ lf_checkbutton = ttk.LabelFrame(tab0, text="CHECKBUTTONS", style='Custom.TLabelf
 lf_checkbutton.grid(row=5, column=0, sticky="news")
 lf_checkbutton.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-style.configure('Custom.TCheckbutton', background=Color.dark, anchor='center', foreground=Color.light, font=Font.font_b)
-style.map('Custom.TCheckbutton', background=[('active', Color.dark_active)], foreground=[('selected', Color.light)])
-
 ttk.Checkbutton(lf_checkbutton, text="test", style="Custom.TCheckbutton").grid(row=1, column=0, sticky="news")
 tk.Checkbutton(lf_checkbutton, text="test", bg=Color.dark, fg=Color.light, selectcolor=Color.dark, font=Font.font_b).grid(row=1, column=1, sticky="news")
-
-# print(tk.LabelFrame.Label)
 
 # RADIOBUTTON
 lf_radiobutton = ttk.LabelFrame(tab0, text="RADIOBUTTONS", style='Custom.TLabelframe')
 lf_radiobutton.grid(row=6, column=0, sticky="news")
 lf_radiobutton.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
-
-style.configure('TRadiobutton', background=Color.dark, foreground=Color.light, font=Font.font_b, selectcolor=Color.dark)
-# tk.option_add('*TRadiobutton*background', Color.dark)
-
 
 ttk.Radiobutton(lf_radiobutton, text="test", style="TCheckbutton").grid(row=2, column=0, sticky="news")
 tk.Radiobutton(lf_radiobutton, text="test", bg=Color.dark, fg=Color.light, selectcolor=Color.dark, font=Font.font_b).grid(row=2, column=1, sticky="news")
@@ -334,14 +407,6 @@ lf_menu = ttk.LabelFrame(tab0, text="MENUBUTTON", style='Custom.TLabelframe')
 lf_menu.grid(row=8, column=0, sticky="news")
 lf_menu.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-root.option_add('*Menu.background', Color.dark)
-root.option_add('*Menu.foreground', Color.light)
-root.option_add('*Menu.font', Font.font_b)
-root.option_add('*Menu.selectColor', Color.light)
-root.option_add('*Menu.activeBackground', Color.dark_active)
-root.option_add('*Menu.activeForeground', Color.light)
-root.option_add('*Menu.tearOff', 0)
-
 menubtn = ttk.Menubutton(lf_menu, text="MENUBTN", style='TButton')
 menubtn.grid(row=4, column=0, sticky="news")
 
@@ -354,8 +419,6 @@ menu.add_separator()
 menu.add_checkbutton(label="Check 1", onvalue=1, offvalue=0, command=lambda: print("Check 1"))
 
 menubtn["menu"] = menu
-print(tk.Menu.slaves(menu))
-
 
 selected_option = tk.StringVar(value="Option 1", name="selected_option", )
 menuop = ttk.OptionMenu(lf_menu, selected_option, "Option 1", "Option 1", "Option 2", "Option 3", style='TMenubutton')
@@ -384,39 +447,22 @@ lf_canvas.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 canvas = tk.Canvas(lf_canvas, bg=Color.dark, width=100, height=50, highlightthickness=0)
 canvas.grid(row=0, column=0, sticky="news")
 
-# Draw text on the Canvas
 canvas.create_text(50, 25, text="CANVAS", fill=Color.light, font=Font.font_b)
-
 
 # SCROLLBAR
 lf_scrollbar = ttk.LabelFrame(tab0, text="SCROLLBAR", style='Custom.TLabelframe')
 lf_scrollbar.grid(row=11, column=0, sticky="news")
 lf_scrollbar.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-# style.configure("Custom.Vertical.TScrollbar",
-#                 background="#222", darkcolor="#222", lightcolor="#333",
-#                 troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
-
-# # Configure the Horizontal Scrollbar style
-# style.configure("Custom.Horizontal.TScrollbar",
-#                 background="#222", darkcolor="#222", lightcolor="#333",
-#                 troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
-
-
-# Create a Canvas widget
 canvas1 = tk.Canvas(lf_scrollbar, bg=Color.dark, width=100, height=100, highlightthickness=0)
 canvas1.grid(row=0, column=0, sticky="news")
 
-# Create vertical and horizontal scrollbars
 v_scrollbar = ttk.Scrollbar(lf_scrollbar, orient="vertical", command=canvas1.yview, style='Custom.Vertical.TScrollbar')
-# v_scrollbar = tk.Scrollbar(lf_scrollbar, orient="vertical", command=canvas1.yview, activebackground=Color.dark_active, bg=Color.dark, troughcolor=Color.dark, highlightthickness=0, highlightbackground=Color.dark, relief="flat", borderwidth=0, highlightcolor=Color.dark_active)
 v_scrollbar.grid(row=0, column=1, sticky="nsw")
 
 h_scrollbar = ttk.Scrollbar(lf_scrollbar, orient="horizontal", command=canvas1.xview, style='Custom.Horizontal.TScrollbar')
 h_scrollbar.grid(row=1, column=0, sticky="ew")
 
-
-# Configure the canvas to work with the scrollbars
 canvas1.config(xscrollcommand=h_scrollbar.set, yscrollcommand=v_scrollbar.set)
 canvas1.create_rectangle(10, 10, 110, 110, outline=Color.light, fill=Color.dark_active)
 canvas1.create_text(20, 25, text="CAN", fill=Color.light, font=Font.font_b)
@@ -424,47 +470,6 @@ canvas1.create_text(200, 25, text="VAS", fill=Color.light, font=Font.font_b)
 
 #[TAB1]#########################################################################
 tab1.columnconfigure(0, weight=1)
-
-# Configure the Treeview style for all elements
-style.configure("Treeview",
-                background=Color.dark,
-                fieldbackground=Color.dark,
-                foreground=Color.light,
-                font=Font.font_b,
-                rowheight=25,
-                borderwidth=0,
-                highlightthickness=0,
-                selectbackground=Color.dark_active,
-                selectforeground=Color.light)
-
-# Configure the Treeview Heading (header) style
-style.configure("Treeview.Heading",
-                background=Color.dark_active,
-                foreground=Color.light,
-                font=Font.font_b,
-                borderwidth=0)
-
-style.map("Treeview.Heading",
-          background=[("active", Color.dark_hover)])  # Change background on hover
-
-
-style.map("Treeview",
-          background=[("selected", Color.dark_hover)],
-          foreground=[("selected", Color.light)])
-
-style.configure("TScrollbar", gripcount=0,
-                background="#222", darkcolor="#222", lightcolor="#333",
-                troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
-
-style.map("TScrollbar",
-            background=[('active', "#333"), ('disabled', "#222")],
-            darkcolor=[('active', "#333"), ('disabled', "#222")],
-            lightcolor=[('active', "#333"), ('disabled', "#222")],
-            troughcolor=[('active', "#1E1E1E"), ('disabled', "#1E1E1E")],
-            bordercolor=[('active', "#1E1E1E"), ('disabled', "#1E1E1E")],
-            arrowcolor=[('active', "#FFFFFF"), ('disabled', "#FFFFFF")])
-
-
 
 treev = ttk.Treeview(tab1, selectmode ='browse')
 treev.grid(row=0, column=0, sticky="news")
@@ -488,16 +493,6 @@ lf_labelScale = ttk.LabelFrame(tab1, text="LABELSCALE", style='Custom.TLabelfram
 lf_labelScale.grid(row=1, column=0, sticky="news")
 lf_labelScale.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-style.configure("Horizontal.TScale",
-                background=Color.dark, troughcolor=Color.dark_active,
-                 relief="flat")
-
-# Configure hover and active effects
-style.map("Horizontal.TScale",
-          background=[("active", Color.dark_active)],
-          troughcolor=[("active", Color.dark)])#,
-        #   sliderrelief=[("active", "solid")])
-
 ttk.LabeledScale(lf_labelScale, from_=0, to=100).grid(row=1, column=1, columnspan=3, sticky="news")
 
 ttk.Scale(lf_labelScale, from_=0, to=100, orient="horizontal", command=lambda v: progressbar.config(value=float(v))).grid(row=2, column=1, columnspan=3, sticky="news")
@@ -508,29 +503,12 @@ lf_pbar = ttk.LabelFrame(tab1, text="PROGRESSBAR", style='Custom.TLabelframe')
 lf_pbar.grid(row=2, column=0, sticky="news")
 lf_pbar.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-# Enable stripes for the Progressbar
-style.configure("TProgressbar",
-                lightcolor=Color.light,      # Light color for stripes
-                darkcolor=Color.dark_active, # Dark color for stripes
-                troughcolor=Color.dark,
-                background=Color.dark_active,
-                thickness=20)
-
-
 progressbar = ttk.Progressbar(lf_pbar, orient="horizontal", value=69, length=200, mode="determinate", style="TProgressbar")
 progressbar.grid(row=0, column=0, sticky="news")
 
 lf_Panedwindow = ttk.LabelFrame(tab1, text="PANEDWINDOW", style='Custom.TLabelframe')
 lf_Panedwindow.grid(row=3, column=0, sticky="news")
 lf_Panedwindow.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
-
-style.configure("Custom.TPanedwindow",
-                background=Color.dark,       # Background color of the Panedwindow
-                gripcolor=Color.dark_active)  # Color of the grip area between panes
-
-# Configure the style for Panedwindow children (if needed)
-style.configure("Custom.TPanedwindow.Horizontal",
-                background=Color.dark)
 
 pwindow = ttk.Panedwindow(lf_Panedwindow, orient=HORIZONTAL, style="Custom.TPanedwindow")
 pwindow.grid(row=3, column=0, sticky="news")
@@ -541,11 +519,6 @@ lf_separator = ttk.LabelFrame(tab1, text="SEPARATOR", style='Custom.TLabelframe'
 lf_separator.grid(row=4, column=0, sticky="news")
 lf_separator.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-style.configure("TSeparator",
-                background=Color.warning,    # Background color of the separator
-                troughcolor=Color.warning,  # Color of the trough (background) of the separator
-                borderwidth=5)
-
 ttk.Separator(lf_separator, orient=HORIZONTAL).grid(row=0, column=0, sticky="news", pady=5, padx=5)
 ttk.Separator(lf_separator, orient=VERTICAL).grid(row=0, column=1, sticky="news", pady=5, padx=5)
 
@@ -555,33 +528,11 @@ lf_spinbox = ttk.LabelFrame(tab1, text="SPINBOX", style='Custom.TLabelframe')
 lf_spinbox.grid(row=5, column=0, sticky="news")
 lf_spinbox.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
 
-style.configure("TSpinbox",
-                fieldbackground=Color.dark,   # Background color of the spinbox
-                background=Color.dark,        # Background color of the spinbox button
-                foreground=Color.light,       # Text color
-                borderwidth=1,                # Border width
-                relief="flat",
-                arrowcolor=Color.light
-                )                # Flat relief to match dark theme
-
-# Configure the focus color to blend with dark mode
-style.map("TSpinbox",
-          foreground=[("focus", Color.light)],
-          background=[("focus", Color.dark_active)],
-          fieldbackground=[("focus", Color.dark_active)],
-           arrowcolor=[('active', "#FFFFFF"), ('disabled', "#FFFFFF")])
-
-style.configure("TSpinbox.field", fg=Color.light, bg=Color.dark, font=Font.font_b)
-
 ttk.Spinbox(lf_spinbox, from_=0, to=100).grid(row=0, column=0, sticky="news")
 
 lf_scale = ttk.LabelFrame(tab1, text="SCALE", style='Custom.TLabelframe')
 lf_scale.grid(row=6, column=0, sticky="news")
 lf_scale.columnconfigure((0,1,2,3,4,5,6,7,8), weight=1)
-
-style.configure("TSizegrip",
-                background=Color.dark,       # Background color of the Sizegrip
-                activebackground=Color.dark_active)  # Background color of the Sizegrip when active
 
 ttk.Sizegrip(lf_scale).grid(row=0, column=0, columnspan=2, sticky="news")
 
