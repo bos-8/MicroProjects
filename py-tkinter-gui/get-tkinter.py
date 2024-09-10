@@ -32,45 +32,4 @@ def stylename_elements_options(stylename):
               'widget_elements_options({0}) is not a regonised stylename.'
               .format(stylename))
 
-
-    # root = tk.Tk()
-
-    # # Dictionary mapping widget names to their respective tk classes
-    # widget_classes = {
-    #     'Button': tk.Button,
-    #     'Label': tk.Label,
-    #     'Checkbutton': tk.Checkbutton,
-    #     'Radiobutton': tk.Radiobutton,
-    #     'Entry': tk.Entry,
-    #     'Menu': tk.Menu,
-    #     'Canvas': tk.Canvas,
-    #     'Frame': tk.Frame,
-    #     'Scrollbar': tk.Scrollbar,
-    #     'Listbox': tk.Listbox,
-    #     'Scale': tk.Scale,
-    #     'Spinbox': tk.Spinbox,
-    #     'OptionMenu': tk.OptionMenu
-    # }
-
-    # try:
-    #     widget = widget_classes[stylename](root)
-    #     # Get widget options
-    #     options = widget.configure()
-    #     print(f'Widget class = {widget.winfo_class()}')
-    #     print('\nAvailable options and their current values:')
-    #     for opt, val in options.items():
-    #         print(f'{opt:30} current value: {val[-1]}')
-
-    #     # Get children (if any)
-    #     children = widget.winfo_children()
-    #     if children:
-    #         print(f'\nChildren of the {widget}:')
-    #         for child in children:
-    #             print(f'- {child.winfo_class()}')
-    #     else:
-    #         print(f'\nNo children for the {widget} widget.')
-
-    # except tk.TclError as e:
-    #     print(f'_tkinter.TclError: {e}')
-
-stylename_elements_options('TSpinbox')
+stylename_elements_options('TCheckbutton')

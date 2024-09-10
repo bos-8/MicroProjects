@@ -117,56 +117,75 @@ class Theme:
         root.option_add('*TCombobox*Listbox.selectBackground', self.color.background_alt)
         root.option_add('*TCombobox*Listbox.selectForeground', self.color.foreground_alt)
 
-        style.configure('TRadiobutton',
-                        background=Color.dark,
-                        foreground=Color.light,
-                        font=Font.font_b,
-                        selectcolor=Color.dark)
-
-        root.option_add('*Menu.background', Color.dark)
-        root.option_add('*Menu.foreground', Color.light)
-        root.option_add('*Menu.font', Font.font_b)
-        root.option_add('*Menu.selectColor', Color.light)
-        root.option_add('*Menu.activeBackground', Color.dark_active)
-        root.option_add('*Menu.activeForeground', Color.light)
-        root.option_add('*Menu.tearOff', 0)
-
         style.configure('TCheckbutton',
-                        background=Color.dark,
-                        anchor='center',
-                        foreground=Color.light,
-                        font=Font.font_b)
+                        background=self.color.background,
+                        foreground=self.color.foreground,
+                        font=("Helvetica", 10),
+                        indicatorcolor=Color.dark,
+                        indicatordiameter=12,
+                        selectcolor=Color.dark,
+                        borderwidth=2,
+                        padding=6)
         style.map('TCheckbutton',
                   background=[('active', Color.dark_active)],
-                  foreground=[('selected', Color.light)])
+                  foreground=[('selected', Color.light)],
+                  indicatorcolor=[('selected', Color.success)],
+                  selectcolor=[('selected', Color.dark)])
+
+        root.option_add('*Menu.background', self.color.background)
+        root.option_add('*Menu.foreground', self.color.foreground)
+        root.option_add('*Menu.font', Font.font_b)
+        root.option_add('*Menu.selectColor', self.color.foreground)
+        root.option_add('*Menu.activeBackground', Color.dark_active)
+        root.option_add('*Menu.activeForeground',self.color.foreground)
+        root.option_add('*Menu.tearOff', 0)
+
+        style.configure('TRadiobutton',
+                        background=self.color.background,
+                        foreground=self.color.foreground,
+                        font=("Helvetica", 10),
+                        indicatorcolor=Color.dark,
+                        indicatordiameter=12,
+                        padding=6)
+
+        style.map("TRadiobutton",
+                  background=[("active", self.color.background)],
+                  foreground=[("active", self.color.foreground)],
+                  indicatorcolor=[("selected", Color.success)]
+        )
 
         style.configure("Treeview",
-                        background=Color.dark,
+                        background=self.color.background,
                         fieldbackground=Color.dark,
-                        foreground=Color.light,
+                        foreground=self.color.foreground,
                         font=Font.font_b,
                         rowheight=25,
                         borderwidth=0,
                         highlightthickness=0,
-                        selectbackground=Color.dark_active,
-                        selectforeground=Color.light)
+                        selectbackground=self.color.background,
+                        selectforeground=self.color.foreground)
 
         style.configure("Treeview.Heading",
-                        background=Color.dark_active,
-                        foreground=Color.light,
+                        background=self.color.background,
+                        foreground=self.color.foreground,
                         font=Font.font_b,
                         borderwidth=0)
 
         style.map("Treeview.Heading",
-                  background=[("active", Color.dark_hover)])
+                  background=[("active", self.color.background_alt)])
 
         style.map("Treeview",
-                  background=[("selected", Color.dark_hover)],
-                  foreground=[("selected", Color.light)])
+                  background=[("selected", self.color.background_alt)],
+                  foreground=[("selected",self.color.foreground)])
 
-        style.configure("TScrollbar", gripcount=0,
-                        background="#222", darkcolor="#222", lightcolor="#333",
-                        troughcolor="#1E1E1E", bordercolor="#1E1E1E", arrowcolor="#FFFFFF")
+        style.configure("TScrollbar",
+                        gripcount=0,
+                        background=self.color.background,
+                        darkcolor=self.color.background,
+                        lightcolor=self.color.background_alt,
+                        troughcolor="#1E1E1E",
+                        bordercolor="#1E1E1E",
+                        arrowcolor=self.color.foreground)
 
         style.map("TScrollbar",
                     background=[('active', "#333"), ('disabled', "#222")],
@@ -177,54 +196,54 @@ class Theme:
                     arrowcolor=[('active', "#FFFFFF"), ('disabled', "#FFFFFF")])
 
         style.configure("Horizontal.TScale",
-                        background=Color.dark,
-                        troughcolor=Color.dark_active,
+                        background=self.color.background,
+                        troughcolor=self.color.background_alt,
                         relief="flat")
 
         style.map("Horizontal.TScale",
-                  background=[("active", Color.dark_active)],
-                  troughcolor=[("active", Color.dark)])
+                  background=[("active", self.color.background)],
+                  troughcolor=[("active", self.color.background_alt)])
 
         style.configure("TProgressbar",
                         lightcolor=Color.light,
                         darkcolor=Color.dark_active,
                         troughcolor=Color.dark,
-                        background=Color.dark_active,
+                        background=self.color.background,
                         thickness=20)
 
         style.configure("TPanedwindow",
-                        background=Color.dark,
-                        gripcolor=Color.dark_active)
+                        background=self.color.background,
+                        gripcolor=self.color.background_alt)
 
         style.configure("TPanedwindow.Horizontal",
-                        background=Color.dark)
+                        background=self.color.background)
 
         style.configure("TSeparator",
-                        background=Color.warning,
+                        background=self.color.background,
                         troughcolor=Color.warning,
                         borderwidth=5)
 
         style.configure("TSpinbox",
-                        fieldbackground=Color.dark,
-                        background=Color.dark,
-                        foreground=Color.light,
+                        fieldbackground=self.color.background,
+                        background=self.color.background,
+                        foreground=self.color.foreground,
                         borderwidth=1,
                         relief="flat",
-                        arrowcolor=Color.light)
+                        arrowcolor=self.color.foreground)
         style.map("TSpinbox",
-                  foreground=[("focus", Color.light)],
-                  background=[("focus", Color.dark_active)],
-                  fieldbackground=[("focus", Color.dark_active)],
+                  foreground=[("focus", self.color.foreground)],
+                  background=[("focus", self.color.background_alt)],
+                  fieldbackground=[("focus", self.color.background_alt)],
                   arrowcolor=[('active', "#FFFFFF"), ('disabled', "#FFFFFF")])
 
         style.configure("TSpinbox.field",
-                        fg=Color.light,
-                        bg=Color.dark,
+                        fg=self.color.foreground,
+                        bg=self.color.background,
                         font=Font.font_b)
 
         style.configure("TSizegrip",
-                        background=Color.dark,
-                        activebackground=Color.dark_active)
+                        background=self.color.background,
+                        activebackground=self.color.background_alt)
 
 class Color:
     primary = "#0d6efd"
