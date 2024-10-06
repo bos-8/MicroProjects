@@ -1,8 +1,8 @@
 # Author:       BO$ <https://github.com/bos-8>
 # Description:  KeyDisplayer in PowerShell
 # Date:         2024-07-23
-# Version:      1.0
-# Requirements: PowerShell 5.1, Windows 7/8/10/11
+# Version:      0x0010
+# Requirements: PowerShell 5.1, Windows 10/11
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
