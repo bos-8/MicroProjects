@@ -68,7 +68,6 @@ function saveDataToCSV($file) {
     $client = $customerInput.Text
     $description = $descriptionInput.Text
     $description = $description -replace "`r`n", "\n" -replace "`n", "\n"
-    Write-Host "Saving data to $file"
     if (Test-Path -Path $file) {
         $lineToAdd = "$date;$time;$global:startTime;$endTime;$task;$client;$description;"
         Add-Content -Path $file -Value $lineToAdd -Encoding 'UTF8'
@@ -245,8 +244,6 @@ $stopButton.Add_Click({
         $timer.Dispose()
 
         $global:timerRunning = $false
-
-        Write-Host "ON STOP"
 
         checkFile($filePath)
         checkFile($homeFilePath)

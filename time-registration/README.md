@@ -17,7 +17,15 @@ This document describes the Time Registration PowerShell script, which enables u
 ## DESCRIPTION / TASK CONTENT
 The Time Registration script provides a simple form interface for users to input their tasks, client details, and descriptions of the work performed. It captures the start time and end time of tasks and saves the data in CSV format for easy reporting and analysis.
 
-![time-registration form](./time-registration.jpg)
+|                    BEFORE START                    |                  AFTER START (1 min)                  |
+| :------------------------------------------------: | :---------------------------------------------------: |
+| ![time-registration form](./time-registration.jpg) | ![time-registration form 1](./time-registration1.jpg) |
+
+time-registration.csv example:
+```csv
+date;time;start_time;end_time;task;client;description;
+2024-10-07;00:02;10/07/2024 09:30:24;10/07/2024 09:32:42;test;test;;
+```
 
 ## TECHNOLOGIES / TOOLS
 - PowerShell
