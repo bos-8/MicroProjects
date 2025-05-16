@@ -129,9 +129,8 @@ void handleUserInput(const std::vector<Option>& options, u_short& index, short b
         if (ch == Key::ArrowPrefix1 || ch == Key::ArrowPrefix2) {
             int key = _getch();
 
-            // Nadpisz znacznik spacjami
             setCursorPosition(0, baseY + index);
-            std::cout << "  ";  // dla pełnego wyczyszczenia znacznika "> "
+            std::cout << "  ";
 
             if ((key == Key::ArrowUp || key == Key::ArrowLeft) && index > 0) {
                 --index;
@@ -147,7 +146,6 @@ void handleUserInput(const std::vector<Option>& options, u_short& index, short b
                 char keyChar = std::tolower(options[i].Value[options[i].Key]);
 
                 if (ch == keyChar) {
-                    // Nadpisz znacznik spacjami
                     setCursorPosition(0, baseY + index);
                     std::cout << "  ";
 
@@ -213,7 +211,7 @@ u_short menu(const std::vector<Option>& options) {
     printWithColor((char*)options[index].Value, MenuColor::Selected);
     setCursorPosition(0, YMenuEnd);
     for (short i = 0; i <= padding_bottom; ++i)
-        std::cout << '\n';  // zamiast std::endl
+        std::cout << '\n';
     SetConsoleTextAttribute(hConsole, static_cast<WORD>(MenuColor::Default));
     setCursorVisibility(true);
     return index;
