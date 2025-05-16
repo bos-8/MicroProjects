@@ -8,6 +8,7 @@ Welcome to the **MicroProjects** repository! This repository contains a collecti
 | 1   | [KeyPress-OSD](./key-press-osd/)          | Script that displays pressed keys.  | PowerShell    | [AGPL 3.0](./LICENSE) |
 | 2   | [py-tkinter-gui](./py-tkinter-gui/)       | Template for creating tkinter GUIs. | Python 3.12.4 | [AGPL 3.0](./LICENSE) |
 | 3   | [Time Registration](./time-registration/) | Form for task/time registration.    | PowerShell    | [AGPL 3.0](./LICENSE) |
+| 4   | [cpp-menu](./cpp-menu/)                   | Menu for CLI C/C++ programs         | C++20         | [AGPL 3.0](./LICENSE) |
 
 ## GETTING STARTED
 
